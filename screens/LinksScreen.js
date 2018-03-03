@@ -1,8 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet, FlatList, Text } from 'react-native';
+import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
 
-export default class LinksScreen extends React.Component {
+class LinksScreen extends React.Component {
   static navigationOptions = {
     title: 'Links'
   };
@@ -17,6 +18,10 @@ export default class LinksScreen extends React.Component {
           data={[{ key: 'a' }, { key: 'b' }]}
           renderItem={({ item }) => <Text>{item.key}</Text>}
         />
+        <FlatList
+          data={this.props.contacts}
+          renderItem={({ item }) => <Text>{item.name}</Text>}
+        />
       </ScrollView>
     );
   }
@@ -29,3 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+export default connect(state => ({
+  contacts: state.contacts
+}))(LinksScreen);
