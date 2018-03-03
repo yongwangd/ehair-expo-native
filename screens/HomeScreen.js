@@ -49,7 +49,8 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <Text style={styles.getStartedText}>
-              Reload it!Change this text and your app will automatically reload.
+              Does it work?Reload it!Change this text and your app will
+              automatically reload.
             </Text>
           </View>
 
