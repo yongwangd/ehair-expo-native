@@ -6,13 +6,13 @@ import { TabNavigator, TabBarBottom } from "react-navigation";
 import Colors from "../constants/Colors";
 
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
+import LinkTab from "./LinkTabNavigation";
 import SettingsScreen from "../screens/SettingsScreen";
 
 export default TabNavigator(
   {
     Links: {
-      screen: LinksScreen,
+      screen: LinkTab,
       navigationOptions: {
         header: null
       }
