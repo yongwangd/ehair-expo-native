@@ -32,6 +32,7 @@
     "react/no-multi-comp": "off",
     "arrow-parens": "off",
     "quotes": "off",
+    "default-case": "off",
     "react/prop-types": "off",
     "no-extend-native": "off",
     "func-names": "off",
