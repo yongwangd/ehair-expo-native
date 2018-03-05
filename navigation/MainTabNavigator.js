@@ -24,8 +24,8 @@ export default TabNavigator(
   },
 
   {
-    headerMode: "none",
     navigationOptions: ({ navigation }) => ({
+      headerBackTitle: "acc",
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;

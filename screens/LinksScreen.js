@@ -21,8 +21,8 @@ console.disableYellowBox = true;
 
 class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: "Links",
-    header: null
+    title: "Links"
+    // header: null
   };
 
   onTagItemClick = tag => {
@@ -64,27 +64,17 @@ const LinkScreen = connect(state => ({
   contacts: state.contacts
 }))(LinksScreen);
 
-const LinkScreenStack = StackNavigator(
-  {
-    LinkScreen: {
-      screen: LinkScreen
-    },
-    TagListScreen: {
-      screen: TagListScreen
-      //   navigationOptions: ({ navigation }) => ({
-      //     title: `${navigation.state.params.name || "No Title pass"}`,
-      //     headerBackTitle: "Back"
-      //   })
-    }
+const LinkScreenStack = StackNavigator({
+  LinkScreen: {
+    screen: LinkScreen
   },
-  {
-    headerMode: "none",
+  TagListScreen: {
+    screen: TagListScreen,
     navigationOptions: ({ navigation }) => ({
-      title: `${(navigation.state.params && navigation.state.params.name) ||
-        "No Title pass"}`,
-      headerBackTitle: "Backss"
+      title: `${navigation.state.params.name || "No Title pass"}`,
+      headerBackTitle: "Back"
     })
   }
-);
+});
 
 export default LinkScreenStack;
