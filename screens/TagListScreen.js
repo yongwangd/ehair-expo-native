@@ -63,7 +63,7 @@ export class TagListContainer extends React.Component {
 
 class TagListScreen extends React.Component {
   static navigationOptions = {
-    headerMode: "screen"
+    // header: null
   };
   onTagClick = tag => {
     const { navigation } = this.props;

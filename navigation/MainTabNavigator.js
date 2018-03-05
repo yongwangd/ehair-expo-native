@@ -24,6 +24,7 @@ export default TabNavigator(
   },
 
   {
+    headerMode: "none",
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
