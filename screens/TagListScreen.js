@@ -1,6 +1,5 @@
 import React from "react";
-import { StackNavigator } from "react-navigation";
-
+import R from "ramda";
 import {
   Container,
   Content,
@@ -11,14 +10,15 @@ import {
   Body,
   Text
 } from "native-base";
+import { connect } from "react-redux";
 
 const TagCmp = props => {
   const { onTagClick, tag, ...rest } = props;
-  const { name } = tag;
+  const { label } = tag;
   return (
     <ListItem {...rest} onPress={() => onTagClick(tag)}>
       <Body>
-        <Text>{name}</Text>
+        <Text>{label}</Text>
       </Body>
       <Right>
         <Icon name="arrow-forward" />
@@ -34,32 +34,44 @@ export const TagListCmp = props => {
   );
 };
 
-export class TagListContainer extends React.Component {
-  state = {
-    tags: [
-      {
-        name: "tag first"
-      },
-      {
-        name: "tag second"
-      }
-    ]
-  };
+class TagListDefault extends React.Component {
+  //   state = {
+  //     tags: [
+  //       {
+  //         name: "tag first"
+  //       },
+  //       {
+  //         name: "tag second"
+  //       }
+  //     ]
+  //   };
+  componentDidMount() {}
 
   render() {
+    const { tags } = this.props;
+    console.log(tags, "tagsss");
     return (
       <Container>
         <Content>
           <Text> Tag list CMP</Text>
-          <TagListCmp
-            tags={this.state.tags}
-            onTagClick={this.props.onTagClick}
-          />
+          <TagListCmp tags={tags} onTagClick={this.props.onTagClick} />
         </Content>
       </Container>
     );
   }
 }
+
+const mapProps = (state, ownProps) => {
+  const { parentTag } = ownProps;
+  if (parentTag) {
+    return { tags: state.tags.filter(tg => tg.parentTagSet[parentTag.key]) };
+  }
+  return {
+    tags: state.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg.parentTagSet))
+  };
+};
+
+export const TagListContainer = connect(mapProps)(TagListDefault);
 
 class TagListScreen extends React.Component {
   static navigationOptions = {
