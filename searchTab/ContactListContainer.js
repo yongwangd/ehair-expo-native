@@ -2,24 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Image } from 'react-native';
 import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
-
-const data = [
-  {
-    img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-    title: 'Meet hotel',
-    des: '不是所有的兼职汪都需要风吹日晒'
-  },
-  {
-    img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
-    title: "McDonald's invites you",
-    des: '不是所有的兼职汪都需要风吹日晒'
-  },
-  {
-    img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-    title: 'Eat the week',
-    des: '不是所有的兼职汪都需要风吹日晒'
-  }
-];
+import { Ionicons } from '@expo/vector-icons';
 
 const styles = {
   contactItem: {}
@@ -58,6 +41,16 @@ const ContactItem = props => {
           >
             {comment}
           </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'start'
+            }}
+          >
+            <Ionicons name="md-checkmark-circle" size={25} color="green" />
+            <Text>In Stock</Text>
+          </View>
         </Flex.Item>
       </Flex>
       <WhiteSpace />
