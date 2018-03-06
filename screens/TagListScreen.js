@@ -63,11 +63,14 @@ class TagListDefault extends React.Component {
 
 const mapProps = (state, ownProps) => {
   const { parentTag } = ownProps;
+  console.log("own props", ownProps);
   if (parentTag) {
-    return { tags: state.tags.filter(tg => tg.parentTagSet[parentTag.key]) };
+    // { tags: state.tags.filter(tg => tg.parentTagSet[parentTag.key]) };
+
+    return { tags: state.tags.filter(R.path(["parentTagSet", parentTag.key])) };
   }
   return {
-    tags: state.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg.parentTagSet))
+    tags: state.tags.filter(tg => R.isNil(tg.parentTagSet) || R.isEmpty(tg.parentTagSet))
   };
 };
 
@@ -80,15 +83,24 @@ class TagListScreen extends React.Component {
   onTagClick = tag => {
     const { navigation } = this.props;
     console.log("tag clicksss", tag);
-    navigation.navigate("TagListScreen", { ...tag });
+    navigation.navigate("TagListScreen", { parentTag: tag, title: tag.label });
   };
   render() {
-    return <TagListContainer onTagClick={this.onTagClick} />;
+    //   const {parentTag } = this.props.navigation
+    const parentTag = R.path(
+      ["props", "navigation", "state", "params", "parentTag"],
+      this
+    );
+
+    console.log(this.props.navigation, "nav", parentTag);
+    return (
+      <TagListContainer onTagClick={this.onTagClick} parentTag={parentTag} />
+    );
   }
 }
 
 export default TagListScreen;
-// export default StackNavigator({
+// export default StackNavigator({j
 //   TagListScreen: {
 //     screen: TagListScreen,
 //     navigationOptions: ({ navigation }) => ({

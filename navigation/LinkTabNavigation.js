@@ -4,12 +4,15 @@ import TagListScreen from "../screens/TagListScreen";
 
 export default StackNavigator({
   LinkScreen: {
-    screen: LinkScreen
+    screen: LinkScreen,
+    navigationOptions: {
+      title: "EHair Inventory"
+    }
   },
   TagListScreen: {
     screen: TagListScreen,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.name || "No Title pass"}`,
+      title: `${navigation.state.params.title || "No Title pass"}`,
       headerBackTitle: "Back"
     })
   }

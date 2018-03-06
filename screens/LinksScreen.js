@@ -2,33 +2,15 @@ import React from "react";
 import { ScrollView, StyleSheet, FlatList, Text } from "react-native";
 import { connect } from "react-redux";
 import { ExpoLinksView } from "@expo/samples";
-import { StackNavigator } from "react-navigation";
-import {
-  Container,
-  Header,
-  Content,
-  List,
-  ListItem,
-  Right,
-  Icon,
-  Body,
-  Left,
-  Button
-} from "native-base";
-import TagListScreen, { TagListContainer } from "./TagListScreen";
+import { TagListContainer } from "./TagListScreen";
 
 console.disableYellowBox = true;
 
 class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: "Links",
-    header: null
-  };
-
   onTagItemClick = tag => {
     const { navigation } = this.props;
     console.log("tag clicked", tag);
-    navigation.navigate("TagListScreen", { ...tag });
+    navigation.navigate("TagListScreen", { parentTag: tag, title: tag.label });
   };
 
   render() {
@@ -42,7 +24,7 @@ class LinksScreen extends React.Component {
           data={[{ key: "a" }, { key: "c" }]}
           renderItem={({ item }) => <Text>{item.key}</Text>}
         />
-        <TagListContainer onTagClick={this.onTagItemClick} />
+        <TagListContainer onTagClick={this.onTagItemClick} parentTag={null} />
         <FlatList
           data={this.props.contacts}
           renderItem={({ item }) => <Text>{item.name}</Text>}
