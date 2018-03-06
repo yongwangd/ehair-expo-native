@@ -33,6 +33,7 @@ const ContactItem = props => {
           >
             {name}
           </Text>
+          <WhiteSpace size="xs" />
           <Text
             style={{
               fontSize: 12,
@@ -41,15 +42,25 @@ const ContactItem = props => {
           >
             {comment}
           </Text>
+          <WhiteSpace size="lg" />
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'start'
+              justifyContent: 'flex-start'
             }}
           >
-            <Ionicons name="md-checkmark-circle" size={25} color="green" />
-            <Text>In Stock</Text>
+            {(Math.random() > 0.5 && [
+              <Ionicons name="md-checkmark-circle" size={17} color="green" />,
+              <Text>In Stock</Text>
+            ]) || [
+              <Ionicons
+                name="md-checkmark-circle"
+                size={17}
+                color="lightgray"
+              />,
+              <Text style={{ color: 'gray' }}>Out of Stock</Text>
+            ]}
           </View>
         </Flex.Item>
       </Flex>
