@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { SearchBar } from 'antd-mobile';
 import { updateContactSearch } from '../store/contactsActionReducer';
+import ContactListContainer from './ContactListContainer';
 
 class SearchScreen extends React.Component {
   cancelSearch = () => {
@@ -25,15 +26,8 @@ class SearchScreen extends React.Component {
           onClear={e => console.log('cleared')}
           ref={ref => (this.searchBarElm = ref)}
         />
-        <SearchBar
-          placeholder="Search"
-          defaultValuef={searchText}
-          onSubmit={changeSearchText}
-          cancelText="Cancel"
-          onClear={() => changeSearchText('')}
-          onCancel={() => changeSearchText('')}
-        />
         <Text>Hello products</Text>
+        <ContactListContainer />
       </View>
     );
   }

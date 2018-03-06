@@ -6,6 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import store from './store/reduxStore';
 
+// import './styles/main.scss';
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false
@@ -22,23 +24,22 @@ export default class App extends React.Component {
           />
         </Provider>
       );
-    } else {
-      return (
-        <Provider store={store}>
-          <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            {Platform.OS === 'android' && (
-              <View style={styles.statusBarUnderlay} />
-            )}
-            <RootNavigation />
-          </View>
-        </Provider>
-      );
     }
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {Platform.OS === 'android' && (
+            <View style={styles.statusBarUnderlay} />
+          )}
+          <RootNavigation />
+        </View>
+      </Provider>
+    );
   }
 
-  _loadResourcesAsync = async () => {
-    return Promise.all([
+  _loadResourcesAsync = async () =>
+    Promise.all([
       Asset.loadAsync([
         require('./assets/images/robot-dev.png'),
         require('./assets/images/robot-prod.png')
@@ -51,7 +52,6 @@ export default class App extends React.Component {
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf')
       })
     ]);
-  };
 
   _handleLoadingError = error => {
     // In this case, you might want to report the error to your error

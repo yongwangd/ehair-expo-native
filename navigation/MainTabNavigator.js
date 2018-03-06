@@ -7,8 +7,8 @@ import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import SearchNavigation from './SearchNavigation';
 import TagTabNav from '../tagsTab/TagTabNav';
+import SearchTabNav from '../searchTab/SearchTabNav';
 
 export default TabNavigator(
   {
@@ -19,7 +19,7 @@ export default TabNavigator(
       }
     },
     Search: {
-      screen: SearchNavigation,
+      screen: SearchTabNav,
       navigationOptions: {
         header: null
       }
@@ -33,6 +33,7 @@ export default TabNavigator(
   },
 
   {
+    initialRouteName: 'Search',
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;

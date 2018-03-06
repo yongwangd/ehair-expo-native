@@ -1,11 +1,9 @@
-import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import logger from "redux-logger";
-import contactsActionReducer, {
-  contactsFetched
-} from "./contactsActionReducer";
-import { contactsList } from "./contactsQuery";
-import { contactTagList } from "./tagsQuery";
-import tagsReducer, { fetchTags } from "./tagsActionReducer";
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import logger from 'redux-logger';
+import contactsActionReducer, {contactsFetched} from './contactsActionReducer';
+import { contactsList } from './contactsQuery';
+import { contactTagList } from './tagsQuery';
+import tagsReducer, { fetchTags } from './tagsActionReducer';
 
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
@@ -15,7 +13,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, applyMiddleware(logger));
 
 contactsList().subscribe(contacts => {
-  console.log("contacts are", contacts);
+  console.log('contacts are', contacts);
   store.dispatch(contactsFetched(contacts));
 });
 

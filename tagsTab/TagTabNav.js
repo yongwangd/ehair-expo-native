@@ -12,7 +12,7 @@ export default StackNavigator({
   TagListScreen: {
     screen: TagListScreen,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.title || 'No Title pass'}`,
+      title: `${navigation.state.params.title || 'Tags Screen'}`,
       headerBackTitle: 'Back'
     })
   }

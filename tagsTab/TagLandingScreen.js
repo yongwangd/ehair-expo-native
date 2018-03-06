@@ -3,10 +3,18 @@ import { ScrollView, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
 
-import { Button, Badge } from 'antd-mobile';
+import { Button } from 'antd-mobile';
 import TagListContainer from './TagListContainer';
 
 console.disableYellowBox = true;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15,
+    backgroundColor: '#fff'
+  }
+});
 
 class TagLandingScreen extends React.Component {
   onTagItemClick = tag => {
@@ -36,14 +44,6 @@ class TagLandingScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff'
-  }
-});
 
 export default connect(state => ({
   contacts: state.contacts

@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import SearchScreen from '../screens/SearchScreen';
+import SearchScreen from './SearchScreen';
 
 export default StackNavigator({
   SearchScreen: {

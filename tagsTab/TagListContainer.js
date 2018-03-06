@@ -1,38 +1,20 @@
 import React from 'react';
 import R from 'ramda';
-import {
-  Container,
-  Content,
-  List,
-  ListItem,
-  Right,
-  Icon,
-  Body,
-  Text
-} from 'native-base';
+import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 const TagCmp = props => {
   const { onTagClick, tag, ...rest } = props;
   const { label } = tag;
-  return (
-    <ListItem {...rest} onPress={() => onTagClick(tag)}>
-      <Body>
-        <Text>{label}</Text>
-      </Body>
-      <Right>
-        <Icon name="arrow-forward" />
-      </Right>
-    </ListItem>
-  );
+  return <Button {...rest} onPress={() => onTagClick(tag)} title={label} />;
 };
 
 export const TagListCmp = props => {
   const { onTagClick, tags } = props;
   return (
-    <List>
+    <View>
       {tags.map(tg => <TagCmp key={tg.key} tag={tg} onTagClick={onTagClick} />)}
-    </List>
+    </View>
   );
 };
 
@@ -41,12 +23,10 @@ class TagList extends React.Component {
     const { tags } = this.props;
     console.log(tags, 'tagsss');
     return (
-      <Container>
-        <Content>
-          <Text> Tag list CMP</Text>
-          <TagListCmp tags={tags} onTagClick={this.props.onTagClick} />
-        </Content>
-      </Container>
+      <View>
+        <Text> Tag list CMP</Text>
+        <TagListCmp tags={tags} onTagClick={this.props.onTagClick} />
+      </View>
     );
   }
 }

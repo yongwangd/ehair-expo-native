@@ -1,5 +1,6 @@
 import React from 'react';
-import TagListContainer from './TagListScreen';
+import R from 'ramda';
+import TagListContainer from './TagListContainer';
 
 class TagListScreen extends React.Component {
   static navigationOptions = {

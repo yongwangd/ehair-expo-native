@@ -13,7 +13,6 @@
     "expo": "^25.0.0",
     "firebase": "^4.10.1",
     "moment": "^2.21.0",
-    "native-base": "^2.3.9",
     "ramda": "^0.25.0",
     "react": "16.2.0",
     "react-dom": "^16.2.0",
