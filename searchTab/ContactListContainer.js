@@ -31,22 +31,35 @@ const ContactItem = props => {
   return (
     <View>
       <WhiteSpace />
-      <WingBlank />
-      <Flex style={{ backgroundColor: 'white', padding: 4 }}>
+      <Flex style={{ backgroundColor: 'white', padding: 2 }}>
         <View style={{ width: '32%' }}>
           <Image
+            style={{ width: 50, height: 50 }}
             source={{
               uri:
-                'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg'
+                'https://facebook.github.io/react-native/docs/assets/favicon.png'
             }}
-            style={{ maxWidth: '100%' }}
           />
         </View>
         <Flex.Item style={{}}>
-          <Text>Second column</Text>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 14
+            }}
+          >
+            {name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 12,
+              color: 'gray'
+            }}
+          >
+            {comment}
+          </Text>
         </Flex.Item>
       </Flex>
-      <WingBlank />
       <WhiteSpace />
     </View>
   );
