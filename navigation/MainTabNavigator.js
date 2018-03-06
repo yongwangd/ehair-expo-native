@@ -1,18 +1,25 @@
-import React from "react";
-import { Platform } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { TabNavigator, TabBarBottom } from "react-navigation";
+import React from 'react';
+import { Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 
-import Colors from "../constants/Colors";
+import Colors from '../constants/Colors';
 
-import HomeScreen from "../screens/HomeScreen";
-import LinkTab from "./LinkTabNavigation";
-import SettingsScreen from "../screens/SettingsScreen";
+import HomeScreen from '../screens/HomeScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import SearchNavigation from './SearchNavigation';
+import TagTabNav from '../tagsTab/TagTabNav';
 
 export default TabNavigator(
   {
     Links: {
-      screen: LinkTab,
+      screen: TagTabNav,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Search: {
+      screen: SearchNavigation,
       navigationOptions: {
         header: null
       }
@@ -31,23 +38,29 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case "Home":
+          case 'Home':
             iconName =
-              Platform.OS === "ios"
-                ? `ios-information-circle${focused ? "" : "-outline"}`
-                : "md-information-circle";
+              Platform.OS === 'ios'
+                ? `ios-information-circle${focused ? '' : '-outline'}`
+                : 'md-information-circle';
             break;
-          case "Links":
+          case 'Search':
             iconName =
-              Platform.OS === "ios"
-                ? `ios-link${focused ? "" : "-outline"}`
-                : "md-link";
+              Platform.OS === 'ios'
+                ? `ios-information-circle${focused ? '' : '-outline'}`
+                : 'md-information-circle';
             break;
-          case "Settings":
+          case 'Links':
             iconName =
-              Platform.OS === "ios"
-                ? `ios-options${focused ? "" : "-outline"}`
-                : "md-options";
+              Platform.OS === 'ios'
+                ? `ios-link${focused ? '' : '-outline'}`
+                : 'md-link';
+            break;
+          case 'Settings':
+            iconName =
+              Platform.OS === 'ios'
+                ? `ios-options${focused ? '' : '-outline'}`
+                : 'md-options';
         }
         return (
           <Ionicons
@@ -60,7 +73,7 @@ export default TabNavigator(
       }
     }),
     tabBarComponent: TabBarBottom,
-    tabBarPosition: "bottom",
+    tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false
   }

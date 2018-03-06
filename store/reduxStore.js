@@ -8,8 +8,8 @@ import { contactTagList } from "./tagsQuery";
 import tagsReducer, { fetchTags } from "./tagsActionReducer";
 
 const rootReducer = combineReducers({
-  contacts: contactsActionReducer,
-  tags: tagsReducer
+  contactChunk: contactsActionReducer,
+  tagChunk: tagsReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(logger));

@@ -27,6 +27,9 @@
     "jasmine": true
   },
   "rules": {
+    "react/prefer-stateless-function": "off",
+    "no-return-assign": "off",
+    "react/sort-comp": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/no-multi-comp": "off",

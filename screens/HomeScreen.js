@@ -97,13 +97,12 @@ export default class HomeScreen extends React.Component {
           useful development tools. {learnMoreButton}
         </Text>
       );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
     }
+    return (
+      <Text style={styles.developmentModeText}>
+        You are not in development mode, your app will run at full speed.
+      </Text>
+    );
   }
 
   _handleLearnMorePress = () => {

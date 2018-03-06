@@ -30,23 +30,13 @@ const TagCmp = props => {
 export const TagListCmp = props => {
   const { onTagClick, tags } = props;
   return (
-    <List>{tags.map(tg => <TagCmp key={tg.key} tag={tg} onTagClick={onTagClick} />)}</List>
+    <List>
+      {tags.map(tg => <TagCmp key={tg.key} tag={tg} onTagClick={onTagClick} />)}
+    </List>
   );
 };
 
-class TagListDefault extends React.Component {
-  //   state = {
-  //     tags: [
-  //       {
-  //         name: "tag first"
-  //       },
-  //       {
-  //         name: "tag second"
-  //       }
-  //     ]
-  //   };
-  componentDidMount() {}
-
+class TagList extends React.Component {
   render() {
     const { tags } = this.props;
     console.log(tags, 'tagsss');
@@ -78,37 +68,4 @@ const mapProps = (state, ownProps) => {
   };
 };
 
-export const TagListContainer = connect(mapProps)(TagListDefault);
-
-class TagListScreen extends React.Component {
-  static navigationOptions = {
-    // header: null
-  };
-  onTagClick = tag => {
-    const { navigation } = this.props;
-    console.log('tag clicksss', tag);
-    navigation.navigate('TagListScreen', { parentTag: tag, title: tag.label });
-  };
-  render() {
-    //   const {parentTag } = this.props.navigation
-    const parentTag = R.path(
-      ['props', 'navigation', 'state', 'params', 'parentTag'],
-      this
-    );
-
-    console.log(this.props.navigation, 'nav', parentTag);
-    return (
-      <TagListContainer onTagClick={this.onTagClick} parentTag={parentTag} />
-    );
-  }
-}
-
-export default TagListScreen;
-// export default StackNavigator({j
-//   TagListScreen: {
-//     screen: TagListScreen,
-//     navigationOptions: ({ navigation }) => ({
-//       title: `${navigation.state.params.name || "No Title pass"}`
-//     })
-//   }
-// });
+export default connect(mapProps)(TagList);

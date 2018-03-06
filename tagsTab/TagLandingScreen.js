@@ -2,19 +2,13 @@ import React from 'react';
 import { ScrollView, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
-import { TagListContainer } from './TagListScreen';
 
-import { Tabs, Button, Badge } from 'antd-mobile';
-
-const tabs = [
-  { title: <Badge text="3">First Tab</Badge> },
-  { title: <Badge text="今日(20)">Second Tab</Badge> },
-  { title: <Badge dot>Third Tab</Badge> }
-];
+import { Button, Badge } from 'antd-mobile';
+import TagListContainer from './TagListContainer';
 
 console.disableYellowBox = true;
 
-class LinksScreen extends React.Component {
+class TagLandingScreen extends React.Component {
   onTagItemClick = tag => {
     const { navigation } = this.props;
     console.log('tag clicked', tag);
@@ -53,4 +47,4 @@ const styles = StyleSheet.create({
 
 export default connect(state => ({
   contacts: state.contacts
-}))(LinksScreen);
+}))(TagLandingScreen);
