@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,17 +9,18 @@ const styles = {
 };
 
 const ContactItem = props => {
-  const { name, length, comment, inStock, ...rest } = props;
+  const { name, downloadURL, length, comment, inStock, ...rest } = props;
 
   return (
-    <View>
-      <WhiteSpace />
-      <Flex style={{ backgroundColor: 'white', padding: 2 }}>
+    <TouchableOpacity>
+      <Flex style={{ backgroundColor: 'white', padding: 0 }}>
         <View style={{ width: '32%' }}>
           <Image
-            style={{ width: 50, height: 50 }}
+            resizeMode="contain"
+            style={{ width: 100, height: 100 }}
             source={{
               uri:
+                downloadURL ||
                 'https://facebook.github.io/react-native/docs/assets/favicon.png'
             }}
           />
@@ -30,6 +31,7 @@ const ContactItem = props => {
               fontWeight: 'bold',
               fontSize: 14
             }}
+            numberOfLines={1}
           >
             {name}
           </Text>
@@ -39,11 +41,12 @@ const ContactItem = props => {
               fontSize: 12,
               color: 'gray'
             }}
+            numberOfLines={2}
           >
             {comment}
           </Text>
           <WhiteSpace size="lg" />
-          <View
+          <TouchableOpacity
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -52,51 +55,55 @@ const ContactItem = props => {
           >
             {(Math.random() > 0.5 && [
               <Ionicons name="md-checkmark-circle" size={17} color="green" />,
-              <Text>In Stock</Text>
+              <Text style={{ color: 'green', marginLeft: 8, fontSize: 11 }}>
+                In Stock
+              </Text>
             ]) || [
               <Ionicons
                 name="md-checkmark-circle"
                 size={17}
                 color="lightgray"
               />,
-              <Text style={{ color: 'gray' }}>Out of Stock</Text>
+              <Text style={{ color: 'gray', marginLeft: 8, fontSize: 11 }}>
+                Out of Stock
+              </Text>
             ]}
-          </View>
+          </TouchableOpacity>
         </Flex.Item>
       </Flex>
       <WhiteSpace />
-    </View>
+    </TouchableOpacity>
   );
-
-  //   return (
-  //     <Card {...rest}>
-  //       <Card.Header
-  //         title={name || 'No Title'}
-  //         thumb="https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg"
-  //         extra="My Extra"
-  //       />
-  //       <Card.Body>
-  //         <Text>Body</Text>
-  //       </Card.Body>
-  //       <Card.Footer content="Footer" extra="Footer Extra" />
-  //     </Card>
-  //   );
 };
 
 const ContactItemList = props => {
   const { contacts, ...rest } = props;
   return (
-    <View {...rest}>
-      {contacts.map(ct => <ContactItem key={ct._id} {...ct} />)}
-    </View>
+    <FlatList
+      {...rest}
+      data={contacts}
+      keyExtractor={ct => ct._id}
+      renderItem={ct => {
+        console.log('item to render', ct);
+        return <ContactItem key={ct._id} {...ct.item} />;
+      }}
+    />
   );
 };
+// const ContactItemList = props => {
+//   const { contacts, ...rest } = props;
+//   return (
+//     <View {...rest}>
+//       {contacts.map(ct => <ContactItem key={ct._id} {...ct} />)}
+//     </View>
+//   );
+// };
 
 class ContactListContainer extends React.Component {
   render() {
-    const { contacts } = this.props;
+    const { contacts, ...rest } = this.props;
 
-    return <ContactItemList contacts={contacts} />;
+    return <ContactItemList contacts={contacts} {...rest} />;
   }
 }
 

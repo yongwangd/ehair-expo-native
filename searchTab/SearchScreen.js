@@ -16,7 +16,7 @@ class SearchScreen extends React.Component {
     const { searchText, changeSearchText } = this.props;
     console.log('rops', searchText, changeSearchText);
     return (
-      <View>
+      <View style={{ display: 'flex', flex: 1 }}>
         <SearchBar
           placeholder="Search"
           defaultValue={searchText}
@@ -27,7 +27,7 @@ class SearchScreen extends React.Component {
           ref={ref => (this.searchBarElm = ref)}
         />
         <Text>Hello products</Text>
-        <ContactListContainer />
+        <ContactListContainer style={{ flex: 1 }} />
       </View>
     );
   }
