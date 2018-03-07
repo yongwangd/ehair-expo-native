@@ -13,7 +13,7 @@ const ContactItem = props => {
 
   return (
     <TouchableOpacity>
-      <Flex style={{ backgroundColor: 'white', padding: 0 }}>
+      <Flex style={{ backgroundColor: 'white', marginLeft: 6, marginRight: 6 }}>
         <View style={{ width: '32%' }}>
           <Image
             resizeMode="contain"
@@ -21,7 +21,8 @@ const ContactItem = props => {
             source={{
               uri:
                 downloadURL ||
-                'https://facebook.github.io/react-native/docs/assets/favicon.png'
+                // 'https://facebook.github.io/react-native/docs/assets/favicon.png'
+                'http://studiotran.com/wp-content/themes/crowd/images/noimage_2.gif'
             }}
           />
         </View>
