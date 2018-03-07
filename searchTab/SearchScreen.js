@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { SearchBar } from 'antd-mobile';
+import { SearchBar, WhiteSpace } from 'antd-mobile';
 import { updateContactSearch } from '../store/contactsActionReducer';
 import ContactListContainer from './ContactListContainer';
 
@@ -26,8 +26,7 @@ class SearchScreen extends React.Component {
           onClear={e => console.log('cleared')}
           ref={ref => (this.searchBarElm = ref)}
         />
-        <Text>Hello products</Text>
-        <ContactListContainer style={{ flex: 1 }} />
+        <ContactListContainer style={{ flex: 1, display: 'flex' }} />
       </View>
     );
   }

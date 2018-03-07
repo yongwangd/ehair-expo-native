@@ -79,15 +79,18 @@ const ContactItem = props => {
 const ContactItemList = props => {
   const { contacts, ...rest } = props;
   return (
-    <FlatList
-      {...rest}
-      data={contacts}
-      keyExtractor={ct => ct._id}
-      renderItem={ct => {
-        console.log('item to render', ct);
-        return <ContactItem key={ct._id} {...ct.item} />;
-      }}
-    />
+    <View style={{ flex: 1 }}>
+      <Text>{contacts.length} Products</Text>
+      <FlatList
+        {...rest}
+        data={contacts}
+        keyExtractor={ct => ct._id}
+        renderItem={ct => {
+          console.log('item to render', ct);
+          return <ContactItem key={ct._id} {...ct.item} />;
+        }}
+      />
+    </View>
   );
 };
 // const ContactItemList = props => {
