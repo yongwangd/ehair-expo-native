@@ -9,10 +9,11 @@ const styles = {
 };
 
 const ContactItem = props => {
-  const { name, downloadURL, length, comment, inStock, ...rest } = props;
+  const { contact, onContactClick, ...rest } = props;
+  const { name, downloadURL, length, comment, inStock } = contact;
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => onContactClick(contact)}>
       <Flex
         style={{ backgroundColor: 'white', marginLeft: 6, marginRight: 16 }}
       >
@@ -80,7 +81,7 @@ const ContactItem = props => {
 };
 
 const ContactItemList = props => {
-  const { contacts, ...rest } = props;
+  const { contacts, onContactClick, ...rest } = props;
   return (
     <View style={{ flex: 1 }}>
       <Text>{contacts.length} Products</Text>
@@ -88,7 +89,13 @@ const ContactItemList = props => {
         {...rest}
         data={contacts}
         keyExtractor={ct => ct._id}
-        renderItem={ct => <ContactItem key={ct._id} {...ct.item} />}
+        renderItem={ct => (
+          <ContactItem
+            key={ct._id}
+            onContactClick={onContactClick}
+            contact={ct.item}
+          />
+        )}
       />
     </View>
   );
@@ -104,9 +111,15 @@ const ContactItemList = props => {
 
 class ContactListContainer extends React.Component {
   render() {
-    const { contacts, ...rest } = this.props;
+    const { contacts, onContactClick, ...rest } = this.props;
 
-    return <ContactItemList contacts={contacts} {...rest} />;
+    return (
+      <ContactItemList
+        contacts={contacts}
+        onContactClick={onContactClick}
+        {...rest}
+      />
+    );
   }
 }
 

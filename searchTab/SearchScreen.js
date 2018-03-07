@@ -11,7 +11,14 @@ class SearchScreen extends React.Component {
     console.log('searchelm', this.searchBarElm);
     this.searchBarElm.inputRef.blur();
   };
-  componentDidMount() {}
+
+  onContactClick = contact => {
+    this.props.navigation.navigate('ContactDetailScreen', {
+      contactId: contact._id,
+      title: contact.name
+    });
+  };
+
   render() {
     const { searchText, changeSearchText } = this.props;
     console.log('rops', searchText, changeSearchText);
@@ -26,7 +33,10 @@ class SearchScreen extends React.Component {
           onClear={e => console.log('cleared')}
           ref={ref => (this.searchBarElm = ref)}
         />
-        <ContactListContainer style={{ flex: 1, display: 'flex' }} />
+        <ContactListContainer
+          style={{ flex: 1, display: 'flex' }}
+          onContactClick={this.onContactClick}
+        />
       </View>
     );
   }

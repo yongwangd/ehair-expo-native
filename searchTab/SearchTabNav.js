@@ -1,5 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import SearchScreen from './SearchScreen';
+import ContactDetailScreen from './ContactDetailScreen';
 
 export default StackNavigator({
   SearchScreen: {
@@ -7,5 +8,8 @@ export default StackNavigator({
     navigationOptions: {
       title: 'Search Products'
     }
+  },
+  ContactDetailScreen: {
+    screen: ContactDetailScreen
   }
 });
