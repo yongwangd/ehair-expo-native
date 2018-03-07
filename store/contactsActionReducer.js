@@ -12,6 +12,10 @@ const initState = {
       downloadURL:
         'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2F1164e825-eecd-498f-8eb7-0daaac8efd36?alt=media&token=a5672e70-c14b-4117-aba5-f9e5a061855f',
       inStock: '',
+      lastUpdateTime: 1520391915869,
+      lastUpdateTimeStr: '2018-03-06T22:05:15-05:00',
+      name: 'I should have a name',
+      tagKeySet: '',
       title: 'The first product',
       tagKeys: {}
     },
@@ -19,13 +23,14 @@ const initState = {
       _id: '-L6cmNwfrrQa5uwoej4c',
       cardImageName: '',
       color: 'teal',
-      comment: 'test',
+      comment:
+        'Note that image sources required this way include size (width, height) info for the Image. If you need to scale the image dynamically',
       createTime: 1520028979028,
       createdTimeStr: '2018-03-02T17:16:19-05:00',
       downloadURL: '',
       inStock: '',
-      lastUpdateTime: 1520029405109,
-      lastUpdateTimeStr: '2018-03-02T17:23:25-05:00',
+      lastUpdateTime: 1520373825317,
+      lastUpdateTimeStr: '2018-03-06T17:03:45-05:00',
       name: 'second pro',
       tagKeySet: { world: true },
       tagKeys: {}
@@ -92,6 +97,72 @@ const initState = {
         'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2Fd331a785-a7b7-4b1c-ab03-4661eb8e6ad8?alt=media&token=a7c6a328-ad98-408b-b302-0b444d62e824',
       inStock: '',
       name: '5a hairs is great',
+      tagKeySet: '',
+      tagKeys: {}
+    },
+    {
+      _id: '-L6yE3ouqb5tvzAAMfPg',
+      cardImageName: 'dafc6af2-6824-438e-9d63-d0282e1749bb',
+      comment: 'what i want is what I have got',
+      createTime: 1520388820314,
+      createdTimeStr: '2018-03-06T21:13:40-05:00',
+      downloadURL:
+        'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2Fdafc6af2-6824-438e-9d63-d0282e1749bb?alt=media&token=73ef88b7-f7be-415f-abe9-3fde7cc47dc9',
+      inStock: '',
+      name: 'Beautiful blonde hair',
+      tagKeySet: { world: true },
+      tagKeys: {}
+    },
+    {
+      _id: '-L6yImSuHh3xtSJPkyX4',
+      cardImageName: '2d5b010c-b961-41b3-9d65-6ad046e14f28',
+      comment: 'hope you like it',
+      createTime: 1520390055835,
+      createdTimeStr: '2018-03-06T21:34:15-05:00',
+      downloadURL:
+        'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2F2d5b010c-b961-41b3-9d65-6ad046e14f28?alt=media&token=d1f9edfd-3165-4311-a425-f323677c04f0',
+      inStock: '',
+      name: 'this is a new product',
+      tagKeySet: '',
+      tagKeys: {}
+    },
+    {
+      _id: '-L6yLcKncTKcrsNseQIl',
+      cardImageName: 'b28e5400-7709-4b44-8dae-d43007feea8f',
+      comment:
+        'More complex, multi-select example demonstrating PureComponent usage for perf optimization and avoiding bugs.\n\nBy binding th',
+      createTime: 1520390800787,
+      createdTimeStr: '2018-03-06T21:46:40-05:00',
+      downloadURL:
+        'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2Fb28e5400-7709-4b44-8dae-d43007feea8f?alt=media&token=9153ba22-d9cc-4e6e-b8b0-031c39188a47',
+      inStock: '',
+      name: 'whataya want from me',
+      tagKeySet: '',
+      tagKeys: {}
+    },
+    {
+      _id: '-L6yOOGatQBIScFa-Dpw',
+      cardImageName: '4705f90d-d643-43de-b807-082c9022d150',
+      comment:
+        "ransfer {flex: 1} down the view stack can lead to errors here, which the element inspector makes easy to debug. Doesn't yet support other contained responders from blocking this scroll view from becoming the responder. <ScrollView> vs <FlatList> - which one to use? ScrollView simply renders all its react child ...",
+      createTime: 1520391525511,
+      createdTimeStr: '2018-03-06T21:58:45-05:00',
+      downloadURL:
+        'https://firebasestorage.googleapis.com/v0/b/ehair-expo-dev.appspot.com/o/businessCards%2F4705f90d-d643-43de-b807-082c9022d150?alt=media&token=facfcdcc-b86c-45ce-8903-f4875accb571',
+      inStock: '',
+      name: 'Do you really need a long name? THere you go',
+      tagKeySet: '',
+      tagKeys: {}
+    },
+    {
+      _id: '-L6yPmWdMEhR3YYuTWPj',
+      cardImageName: '',
+      comment: 'hello 12th products',
+      createTime: 1520391891081,
+      createdTimeStr: '2018-03-06T22:04:51-05:00',
+      downloadURL: '',
+      inStock: '',
+      name: 'There comes the 12th one',
       tagKeySet: '',
       tagKeys: {}
     }

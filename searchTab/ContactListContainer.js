@@ -13,8 +13,10 @@ const ContactItem = props => {
 
   return (
     <TouchableOpacity>
-      <Flex style={{ backgroundColor: 'white', marginLeft: 6, marginRight: 6 }}>
-        <View style={{ width: '32%' }}>
+      <Flex
+        style={{ backgroundColor: 'white', marginLeft: 6, marginRight: 16 }}
+      >
+        <View>
           <Image
             resizeMode="contain"
             style={{ width: 100, height: 100 }}
@@ -26,7 +28,7 @@ const ContactItem = props => {
             }}
           />
         </View>
-        <Flex.Item style={{}}>
+        <Flex.Item style={{ marginLeft: 20 }}>
           <Text
             style={{
               fontWeight: 'bold',
@@ -86,10 +88,7 @@ const ContactItemList = props => {
         {...rest}
         data={contacts}
         keyExtractor={ct => ct._id}
-        renderItem={ct => {
-          console.log('item to render', ct);
-          return <ContactItem key={ct._id} {...ct.item} />;
-        }}
+        renderItem={ct => <ContactItem key={ct._id} {...ct.item} />}
       />
     </View>
   );
