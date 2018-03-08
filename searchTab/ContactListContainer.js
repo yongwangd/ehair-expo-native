@@ -80,26 +80,60 @@ const ContactItem = props => {
   );
 };
 
-const ContactItemList = props => {
-  const { contacts, onContactClick, ...rest } = props;
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>{contacts.length} Products</Text>
-      <FlatList
-        {...rest}
-        data={contacts}
-        keyExtractor={ct => ct._id}
-        renderItem={ct => (
-          <ContactItem
-            key={ct._id}
-            onContactClick={onContactClick}
-            contact={ct.item}
-          />
-        )}
-      />
-    </View>
-  );
-};
+class ContactItemList extends React.Component {
+  state = {
+    visible: 10,
+    perPage: 10
+  };
+  render() {
+    const { visible, perPage } = this.state;
+    const { contacts, onContactClick, ...rest } = this.props;
+    const visibleContacts = contacts.slice(0, visible);
+    return (
+      <View style={{ flex: 1 }}>
+        <Text>{contacts.length} Products</Text>
+        <FlatList
+          {...rest}
+          data={visibleContacts}
+          keyExtractor={ct => ct._id}
+          onEndReached={() => {
+            console.log('ENd Reached,,,,,');
+            this.setState({ visible: visible + perPage });
+          }}
+          renderItem={ct => (
+            <ContactItem
+              key={ct._id}
+              onContactClick={onContactClick}
+              contact={ct.item}
+            />
+          )}
+        />
+      </View>
+    );
+  }
+}
+
+// const ContactItemList = props => {
+//   const { contacts, onContactClick, ...rest } = props;
+//   return (
+//     <View style={{ flex: 1 }}>
+//       <Text>{contacts.length} Products</Text>
+//       <FlatList
+//         {...rest}
+//         data={contacts}
+//         keyExtractor={ct => ct._id}
+//         renderItem={ct => (
+//           <ContactItem
+//             key={ct._id}
+//             onContactClick={onContactClick}
+//             contact={ct.item}
+//           />
+//         )}
+//       />
+//     </View>
+//   );
+// };
+
 // const ContactItemList = props => {
 //   const { contacts, ...rest } = props;
 //   return (
