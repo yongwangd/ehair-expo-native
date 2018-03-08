@@ -1,10 +1,13 @@
 import React from 'react';
+import R from 'ramda';
 import { ScrollView, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
 
 import { Button } from 'antd-mobile';
-import TagListContainer from './TagListContainer';
+import { TagListCmp } from './TagListScreen';
+
+import { isEmpty } from 'ramda';
 
 console.disableYellowBox = true;
 
@@ -25,6 +28,7 @@ class TagLandingScreen extends React.Component {
 
   render() {
     console.log(this.props.navigation);
+    console.log('tags, props', this.props);
     return (
       <ScrollView style={styles.container}>
         {/* Go ahead and delete ExpoLinksView and replace it with your
@@ -35,7 +39,10 @@ class TagLandingScreen extends React.Component {
           data={[{ key: 'a' }, { key: 'c' }]}
           renderItem={({ item }) => <Text>{item.key}</Text>}
         />
-        <TagListContainer onTagClick={this.onTagItemClick} parentTag={null} />
+        <TagListCmp
+          onTagClick={this.onTagItemClick}
+          tags={this.props.rootTags}
+        />
         <FlatList
           data={this.props.contacts}
           renderItem={({ item }) => <Text>{item.name}</Text>}
@@ -46,5 +53,5 @@ class TagLandingScreen extends React.Component {
 }
 
 export default connect(state => ({
-  contacts: state.contacts
+  rootTags: state.tagChunk.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg))
 }))(TagLandingScreen);

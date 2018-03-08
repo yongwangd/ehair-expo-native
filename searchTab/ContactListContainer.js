@@ -10,7 +10,7 @@ const styles = {
 
 const ContactItem = props => {
   const { contact, onContactClick, ...rest } = props;
-  const { name, downloadURL, length, comment, inStock } = contact;
+  const { name, downloadURL, images, length, comment, inStock } = contact;
 
   return (
     <TouchableOpacity onPress={() => onContactClick(contact)}>
@@ -23,7 +23,7 @@ const ContactItem = props => {
             style={{ width: 100, height: 100 }}
             source={{
               uri:
-                downloadURL ||
+                (images && `http:${images[0]}`) ||
                 // 'https://facebook.github.io/react-native/docs/assets/favicon.png'
                 'http://studiotran.com/wp-content/themes/crowd/images/noimage_2.gif'
             }}
