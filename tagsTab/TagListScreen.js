@@ -19,18 +19,17 @@ export const TagListCmp = props => {
 };
 
 class TagListScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    const { tags } = this.props;
-    if (!tags || tags.length == 0) {
-      this.props.navigation.pop();
-      this.props.navigation.navigate('TagContactsScreen');
-    }
-  }
+  //   constructor(props) {
+  //     super(props);
+  //     // const { tags } = this.props;
+  //     // if (!tags || tags.length == 0) {
+  //     //   this.props.navigation.navigate('TagContactsScreen');
+  //     // }
+  //   }
   onTagClick = tag => {
     const { navigation } = this.props;
     console.log('tag clicksss', tag);
-    navigation.navigate('TagListScreen', { parentTag: tag, title: tag.label });
+    navigation.navigate('TagContactsScreen', { tag });
   };
   render() {
     const { tags } = this.props;

@@ -156,8 +156,8 @@ class ContactListContainer extends React.Component {
   }
 }
 
-const mapProps = state => ({
-  contacts: state.contactChunk.contacts
+const mapProps = (state, ownProps) => ({
+  contacts: ownProps.contacts || state.contactChunk.contacts
 });
 
 export default connect(mapProps)(ContactListContainer);
