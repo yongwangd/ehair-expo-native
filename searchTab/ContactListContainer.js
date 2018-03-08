@@ -57,7 +57,7 @@ const ContactItem = props => {
               justifyContent: 'flex-start'
             }}
           >
-            {(Math.random() > 0.5 && [
+            {(1 > 0.5 && [
               <Ionicons name="md-checkmark-circle" size={17} color="green" />,
               <Text style={{ color: 'green', marginLeft: 8, fontSize: 11 }}>
                 In Stock
@@ -97,7 +97,6 @@ class ContactItemList extends React.Component {
           data={visibleContacts}
           keyExtractor={ct => ct._id}
           onEndReached={() => {
-            console.log('ENd Reached,,,,,');
             this.setState({ visible: visible + perPage });
           }}
           renderItem={ct => (
