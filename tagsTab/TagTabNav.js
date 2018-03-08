@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation';
 import TagLandingScreen from './TagLandingScreen';
 import TagListScreen from './TagListScreen';
 import TagContactsScreen from './TagContactsScreen';
+import ContactDetailScreen from '../searchTab/ContactDetailScreen';
 
 export default StackNavigator({
   TagLandingScreen: {
@@ -19,5 +20,8 @@ export default StackNavigator({
   },
   TagContactsScreen: {
     screen: TagContactsScreen
+  },
+  ContactDetailScreen: {
+    screen: ContactDetailScreen
   }
 });
