@@ -27,6 +27,8 @@
     "jasmine": true
   },
   "rules": {
+    "no-confusing-arrow": "off",
+    "no-shadow": "off",
     "object-curly-newline": "off",
     "react/prefer-stateless-function": "off",
     "no-return-assign": "off",

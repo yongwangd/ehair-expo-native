@@ -2,9 +2,17 @@ import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Carousel, Badge, Tag } from 'antd-mobile';
-import { GRAY, BLACK, NAVY, BLUE, TEAL, LIGHTBLACK } from '../lib/colors';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  GRAY,
+  BLACK,
+  NAVY,
+  BLUE,
+  TEAL,
+  LIGHTBLACK,
+  GREEN
+} from '../lib/colors';
 import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const ContactDetail = props => {
   const { contact } = props;
@@ -46,13 +54,37 @@ const ContactDetail = props => {
     );
   };
 
+  const renderStockElm = () =>
+    length && length.length ? null : (
+      <View
+        style={{
+          marginTop: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Ionicons
+          name={inStock ? 'md-checkmark-circle' : 'md-close-circle'}
+          size={18}
+          color={inStock ? GREEN : GRAY}
+        />
+        <Text
+          style={{ color: inStock ? GREEN : GRAY, marginLeft: 8, fontSize: 14 }}
+        >
+          {inStock ? 'In Stock' : 'Sold Out'}
+        </Text>
+      </View>
+    );
+
   return (
     <View
       style={{
         backgroundColor: 'white',
         padding: 10,
         flex: 1,
-        paddingBottom: 17
+        paddingBottom: 17,
+        paddingTop: 15
       }}
     >
       <ScrollView>
@@ -95,10 +127,16 @@ const ContactDetail = props => {
             </View>
           )}
 
-        <Text style={{ color: NAVY, fontSize: 18, marginTop: 10 }}>
-          {subtitle}
-        </Text>
-        <Text style={{ color: LIGHTBLACK, marginTop: 8 }}>{comment}</Text>
+        {renderStockElm()}
+
+        {subtitle != null && (
+          <Text style={{ color: NAVY, fontSize: 18, marginTop: 10 }}>
+            {subtitle}
+          </Text>
+        )}
+        {comment != null && (
+          <Text style={{ color: LIGHTBLACK, marginTop: 8 }}>{comment}</Text>
+        )}
         <Text>{inStock}</Text>
 
         {spec &&

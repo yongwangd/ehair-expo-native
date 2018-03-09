@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import logger from 'redux-logger';
-import contactsActionReducer, {contactsFetched} from './contactsActionReducer';
+import contactsActionReducer, {
+  contactsFetched
+} from './contactsActionReducer';
 import { contactsList } from './contactsQuery';
 import { contactTagList } from './tagsQuery';
 import tagsReducer, { fetchTags } from './tagsActionReducer';
@@ -14,7 +16,7 @@ const store = createStore(rootReducer, applyMiddleware(logger));
 
 contactsList().subscribe(contacts => {
   console.log('contacts are', contacts);
-  store.dispatch(contactsFetched(contacts));
+  store.dispatch(contactsFetched(contacts.filter(c => !c.hide)));
 });
 
 contactTagList().subscribe(tags => {
