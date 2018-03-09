@@ -5,8 +5,8 @@ import ContactListContainer from './ContactListContainer';
 import React from 'react';
 import SearchBoxContainer from '../containers/SearchBoxContainer';
 import { connect } from 'react-redux';
+import { searchFilteredContactsSelector } from '../selectors/contactSelectors';
 import { updateContactSearch } from '../store/contactsActionReducer';
-import { visibleContacts } from '../selectors/contactSelectors';
 
 class SearchScreen extends React.Component {
   cancelSearch = () => {
@@ -49,7 +49,7 @@ class SearchScreen extends React.Component {
 
 const mapProps = state => ({
   searchText: state.contactChunk.searchText,
-  contacts: visibleContacts(state)
+  contacts: searchFilteredContactsSelector(state)
 });
 
 const mapDispatch = dispatch => ({
