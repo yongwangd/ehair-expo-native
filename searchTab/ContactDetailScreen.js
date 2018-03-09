@@ -2,17 +2,10 @@ import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Carousel, Badge, Tag } from 'antd-mobile';
-import {
-  GRAY,
-  BLACK,
-  NAVY,
-  BLUE,
-  TEAL,
-  LIGHTBLACK,
-  GREEN
-} from '../lib/colors';
+import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { CONTACT_DETAIL_IMAGE_HEIGHT } from '../lib/screenProps';
 
 const ContactDetail = props => {
   const { contact } = props;
@@ -54,28 +47,32 @@ const ContactDetail = props => {
     );
   };
 
-  const renderStockElm = () =>
-    length && length.length ? null : (
-      <View
+  const renderStockElm = () => (
+    <View
+      style={{
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <Ionicons
+        name={inStock ? 'md-checkmark-circle' : 'md-close-circle'}
+        size={18}
+        color={inStock ? GREEN : LIGHTBLACK}
+      />
+      <Text
         style={{
-          marginTop: 10,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center'
+          color: inStock ? GREEN : LIGHTBLACK,
+          marginLeft: 8,
+          fontSize: 14,
+          fontWeight: 'bold'
         }}
       >
-        <Ionicons
-          name={inStock ? 'md-checkmark-circle' : 'md-close-circle'}
-          size={18}
-          color={inStock ? GREEN : GRAY}
-        />
-        <Text
-          style={{ color: inStock ? GREEN : GRAY, marginLeft: 8, fontSize: 14 }}
-        >
-          {inStock ? 'In Stock' : 'Sold Out'}
-        </Text>
-      </View>
-    );
+        {inStock ? 'In Stock' : 'Sold Out'}
+      </Text>
+    </View>
+  );
 
   return (
     <View
@@ -97,7 +94,7 @@ const ContactDetail = props => {
           {images.map(img => (
             <Image
               resizeMode="contain"
-              style={{ width: '100%', height: 300 }}
+              style={{ width: '100%', height: CONTACT_DETAIL_IMAGE_HEIGHT }}
               resizeMethod="contain"
               source={{
                 uri:
@@ -108,6 +105,8 @@ const ContactDetail = props => {
             />
           ))}
         </Carousel>
+
+        {renderStockElm()}
 
         {length &&
           length.length > 0 && (
@@ -126,8 +125,6 @@ const ContactDetail = props => {
               </View>
             </View>
           )}
-
-        {renderStockElm()}
 
         {subtitle != null && (
           <Text style={{ color: NAVY, fontSize: 18, marginTop: 10 }}>

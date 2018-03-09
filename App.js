@@ -7,6 +7,7 @@ import RootNavigation from './navigation/RootNavigation';
 import store from './store/reduxStore';
 
 // import './styles/main.scss';
+import './lib/screenProps';
 
 export default class App extends React.Component {
   state = {

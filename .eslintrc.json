@@ -27,6 +27,7 @@
     "jasmine": true
   },
   "rules": {
+    "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
     "no-shadow": "off",
     "object-curly-newline": "off",

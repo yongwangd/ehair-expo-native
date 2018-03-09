@@ -16,7 +16,14 @@ const store = createStore(rootReducer, applyMiddleware(logger));
 
 contactsList().subscribe(contacts => {
   console.log('contacts are', contacts);
-  store.dispatch(contactsFetched(contacts.filter(c => !c.hide)));
+
+  // TODO: Randomize inStock
+  const visibleContacts = contacts.filter(c => !c.hide).map(c => ({
+    ...c,
+    inStock: Math.random() > 0.5
+  }));
+
+  store.dispatch(contactsFetched(visibleContacts));
 });
 
 contactTagList().subscribe(tags => {

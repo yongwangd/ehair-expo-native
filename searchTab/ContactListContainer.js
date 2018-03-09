@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
 import { Ionicons } from '@expo/vector-icons';
+import { GREEN, GRAY } from '../lib/colors';
+import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
 
 const styles = {
   contactItem: {}
@@ -20,7 +22,10 @@ const ContactItem = props => {
         <View>
           <Image
             resizeMode="contain"
-            style={{ width: 100, height: 100 }}
+            style={{
+              width: CONTACT_LIST_IMAGE_HEIGHT,
+              height: CONTACT_LIST_IMAGE_HEIGHT
+            }}
             source={{
               uri:
                 (images && `http:${images[0]}`) ||
@@ -58,21 +63,29 @@ const ContactItem = props => {
               justifyContent: 'flex-start'
             }}
           >
-            {(1 > 0.5 && [
-              <Ionicons name="md-checkmark-circle" size={17} color="green" />,
-              <Text style={{ color: 'green', marginLeft: 8, fontSize: 11 }}>
-                In Stock
-              </Text>
-            ]) || [
+            <View
+              style={{
+                marginTop: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
               <Ionicons
-                name="md-checkmark-circle"
-                size={17}
-                color="lightgray"
-              />,
-              <Text style={{ color: 'gray', marginLeft: 8, fontSize: 11 }}>
-                Out of Stock
+                name={inStock ? 'md-checkmark-circle' : 'md-close-circle'}
+                size={16}
+                color={inStock ? GREEN : GRAY}
+              />
+              <Text
+                style={{
+                  color: inStock ? GREEN : GRAY,
+                  marginLeft: 8,
+                  fontSize: 12
+                }}
+              >
+                {inStock ? 'In Stock' : 'Sold Out'}
               </Text>
-            ]}
+            </View>
           </TouchableOpacity>
         </Flex.Item>
       </Flex>
