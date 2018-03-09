@@ -1,4 +1,16 @@
-import { GRAY, WHITE } from '../lib/colors';
+import {
+  AQUA,
+  BLACK,
+  BLUE,
+  GRAY,
+  MAROON,
+  NAVY,
+  ORANGE,
+  PURPLE,
+  RED,
+  TEAL,
+  WHITE
+} from '../lib/colors';
 import { Image, Text, View } from 'react-native';
 
 import ContactDetailScreen from './ContactDetailScreen';
@@ -7,30 +19,41 @@ import SearchBoxContainer from '../containers/SearchBoxContainer';
 import SearchScreen from './SearchScreen';
 import { StackNavigator } from 'react-navigation';
 
-export default StackNavigator({
-  SearchScreen: {
-    screen: SearchScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Search Products',
-      header: (
-        <View
-          style={{
-            paddingTop: 25,
-            backgroundColor: GRAY,
-            display: 'flex'
-          }}
-        >
-          {/*           <Image
+export default StackNavigator(
+  {
+    SearchScreen: {
+      screen: SearchScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Search Products',
+        header: (
+          <View
+            style={{
+              display: 'flex',
+              paddingTop: 30,
+              backgroundColor: WHITE
+            }}
+          >
+            {/*           <Image
             source={require('../assets/images/ehair-logo.png')}
             style={{ width: 40, height: 20 }}
             resizeMode="contain"
 /> */}
-          <SearchBoxContainer />
-        </View>
-      )
-    })
+            <SearchBoxContainer />
+          </View>
+        )
+      })
+    },
+    ContactDetailScreen: {
+      screen: ContactDetailScreen
+    }
   },
-  ContactDetailScreen: {
-    screen: ContactDetailScreen
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: WHITE
+      },
+      headerTintColor: BLACK,
+      headerTitleStyle: {}
+    }
   }
-});
+);

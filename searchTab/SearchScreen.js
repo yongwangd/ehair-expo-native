@@ -27,7 +27,6 @@ class SearchScreen extends React.Component {
     console.log('rops', searchText, changeSearchText);
     return (
       <View style={{ display: 'flex', flex: 1 }}>
-        <SearchBoxContainer />
         <SearchBar
           placeholder="Search"
           defaultValue={searchText}
