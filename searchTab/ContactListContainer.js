@@ -33,7 +33,8 @@ const ContactItem = props => {
           <Text
             style={{
               fontWeight: 'bold',
-              fontSize: 14
+              fontSize: 16,
+              fontFamily: 'open-sans'
             }}
             numberOfLines={1}
           >
