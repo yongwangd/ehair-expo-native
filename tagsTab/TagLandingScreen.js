@@ -1,12 +1,11 @@
-import React from 'react';
-import R from 'ramda';
-import { ScrollView, StyleSheet, FlatList, Text } from 'react-native';
-import { connect } from 'react-redux';
+import { Button, ImagePicker } from 'antd-mobile';
+import { FlatList, Image, ScrollView, StyleSheet, Text } from 'react-native';
+
 import { ExpoLinksView } from '@expo/samples';
-
-import { Button } from 'antd-mobile';
+import R from 'ramda';
+import React from 'react';
 import { TagListCmp } from './TagListScreen';
-
+import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 
 console.disableYellowBox = true;
@@ -31,14 +30,14 @@ class TagLandingScreen extends React.Component {
     console.log('tags, props', this.props);
     return (
       <ScrollView style={styles.container}>
+        <Image
+          source={require('../assets/images/ehair-logo.png')}
+          style={{ width: '100%', height: 70 }}
+          resizeMode="contain"
+        />
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
         <ExpoLinksView />
-        <Button>default</Button>
-        <FlatList
-          data={[{ key: 'a' }, { key: 'c' }]}
-          renderItem={({ item }) => <Text>{item.key}</Text>}
-        />
         <TagListCmp
           onTagClick={this.onTagItemClick}
           tags={this.props.rootTags}

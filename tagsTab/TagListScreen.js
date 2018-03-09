@@ -1,31 +1,28 @@
-import React from 'react';
-import R from 'ramda';
-import { connect } from 'react-redux';
-import { Text, View, Button } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 
-const TagCmp = props => {
-  const { onTagClick, tag, ...rest } = props;
-  const { label } = tag;
-  return <Button {...rest} onPress={() => onTagClick(tag)} title={label} />;
-};
+import { List } from 'antd-mobile';
+import R from 'ramda';
+import React from 'react';
+import { connect } from 'react-redux';
 
 export const TagListCmp = props => {
-  const { onTagClick, tags } = props;
+  const { tags, onTagClick } = props;
   return (
-    <View>
-      {tags.map(tg => <TagCmp key={tg.key} tag={tg} onTagClick={onTagClick} />)}
-    </View>
+    <List renderHeader={() => 'Categories'}>
+      {tags.map(tg => (
+        <List.Item
+          key={tg.key}
+          arrow="horizontal"
+          onClick={() => onTagClick(tg)}
+        >
+          {tg.label}
+        </List.Item>
+      ))}
+    </List>
   );
 };
 
 class TagListScreen extends React.Component {
-  //   constructor(props) {
-  //     super(props);
-  //     // const { tags } = this.props;
-  //     // if (!tags || tags.length == 0) {
-  //     //   this.props.navigation.navigate('TagContactsScreen');
-  //     // }
-  //   }
   onTagClick = tag => {
     const { navigation } = this.props;
     console.log('tag clicksss', tag);
@@ -33,7 +30,13 @@ class TagListScreen extends React.Component {
   };
   render() {
     const { tags } = this.props;
-    return <TagListCmp onTagClick={this.onTagClick} tags={tags} />;
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          <TagListCmp onTagClick={this.onTagClick} tags={tags} />
+        </ScrollView>
+      </View>
+    );
   }
 }
 
