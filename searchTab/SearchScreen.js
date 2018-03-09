@@ -1,9 +1,12 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
 import { SearchBar, WhiteSpace } from 'antd-mobile';
-import { updateContactSearch } from '../store/contactsActionReducer';
+import { Text, View } from 'react-native';
+
 import ContactListContainer from './ContactListContainer';
+import React from 'react';
+import SearchBoxContainer from '../containers/SearchBoxContainer';
+import { connect } from 'react-redux';
+import { updateContactSearch } from '../store/contactsActionReducer';
+import { visibleContacts } from '../selectors/contactSelectors';
 
 class SearchScreen extends React.Component {
   cancelSearch = () => {
@@ -20,10 +23,11 @@ class SearchScreen extends React.Component {
   };
 
   render() {
-    const { searchText, changeSearchText } = this.props;
+    const { contacts, searchText, changeSearchText } = this.props;
     console.log('rops', searchText, changeSearchText);
     return (
       <View style={{ display: 'flex', flex: 1 }}>
+        <SearchBoxContainer />
         <SearchBar
           placeholder="Search"
           defaultValue={searchText}
@@ -34,6 +38,7 @@ class SearchScreen extends React.Component {
           ref={ref => (this.searchBarElm = ref)}
         />
         <ContactListContainer
+          contacts={contacts}
           style={{ flex: 1, display: 'flex' }}
           onContactClick={this.onContactClick}
         />
@@ -44,7 +49,7 @@ class SearchScreen extends React.Component {
 
 const mapProps = state => ({
   searchText: state.contactChunk.searchText,
-  contacts: state.contactChunk.contacts
+  contacts: visibleContacts(state)
 });
 
 const mapDispatch = dispatch => ({

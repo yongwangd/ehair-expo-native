@@ -27,6 +27,7 @@
     "jasmine": true
   },
   "rules": {
+    "import/prefer-default-export": "off",
     "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
     "no-shadow": "off",

@@ -60,9 +60,10 @@ class SearchBoxContainer extends React.Component {
       valueEditting: text
     });
   };
-  onSubmitEditing = () => {
+  onSubmitEditting = () => {
     const { onSubmit } = this.props;
     const { valueEditting } = this.state;
+    console.log('on submit editt', valueEditting);
     onSubmit(valueEditting);
   };
   onCancel = () => {
@@ -80,11 +81,11 @@ class SearchBoxContainer extends React.Component {
   render() {
     const { value, ...rest } = this.props;
     const { valueEditting } = this.state;
-    const { onChangeText, onSubmitEditing, onCancel } = this;
+    const { onChangeText, onSubmitEditting, onCancel } = this;
     return (
       <SearchBox
         value={valueEditting}
-        {...{ onCancel, onSubmitEditing, onChangeText, ...rest }}
+        {...{ onCancel, onSubmitEditting, onChangeText, ...rest }}
       />
     );
   }

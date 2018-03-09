@@ -126,35 +126,6 @@ class ContactItemList extends React.Component {
   }
 }
 
-// const ContactItemList = props => {
-//   const { contacts, onContactClick, ...rest } = props;
-//   return (
-//     <View style={{ flex: 1 }}>
-//       <Text>{contacts.length} Products</Text>
-//       <FlatList
-//         {...rest}
-//         data={contacts}
-//         keyExtractor={ct => ct._id}
-//         renderItem={ct => (
-//           <ContactItem
-//             key={ct._id}
-//             onContactClick={onContactClick}
-//             contact={ct.item}
-//           />
-//         )}
-//       />
-//     </View>
-//   );
-// };
-
-// const ContactItemList = props => {
-//   const { contacts, ...rest } = props;
-//   return (
-//     <View {...rest}>
-//       {contacts.map(ct => <ContactItem key={ct._id} {...ct} />)}
-//     </View>
-//   );
-// };
 
 class ContactListContainer extends React.Component {
   render() {
