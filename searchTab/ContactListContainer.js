@@ -1,10 +1,11 @@
+import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { GRAY, GREEN } from '../lib/colors';
+
+import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
-import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
-import { Ionicons } from '@expo/vector-icons';
-import { GREEN, GRAY } from '../lib/colors';
-import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
 
 const styles = {
   contactItem: {}
@@ -17,7 +18,12 @@ const ContactItem = props => {
   return (
     <TouchableOpacity onPress={() => onContactClick(contact)}>
       <Flex
-        style={{ backgroundColor: 'white', marginLeft: 6, marginRight: 16 }}
+        style={{
+          backgroundColor: 'white',
+          marginLeft: 6,
+          marginRight: 16,
+          paddingRight: 6
+        }}
       >
         <View>
           <Image
@@ -125,7 +131,6 @@ class ContactItemList extends React.Component {
     );
   }
 }
-
 
 class ContactListContainer extends React.Component {
   render() {

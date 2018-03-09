@@ -23,7 +23,7 @@ export class SearchBox extends React.Component {
         <TextInput
           value={value}
           ref={ref => (this.inputRef = ref)}
-          style={{ flex: 1, height: 20, borderColor: 'black', borderWidth: 1 }}
+          style={{ flex: 1 }}
           placeholder={placeholder}
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
