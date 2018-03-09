@@ -14,6 +14,8 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 
+store.subscribe(st => console.info('store', st));
+
 contactsList().subscribe(contacts => {
   console.log('contacts are', contacts);
 

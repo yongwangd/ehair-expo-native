@@ -3,8 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import { Text, View } from 'react-native';
 import SearchScreen from './SearchScreen';
 import ContactDetailScreen from './ContactDetailScreen';
-import { BLUE, LIME, TEAL, ORANGE, WHITE } from '../lib/colors';
-import SearchBox from '../components/SearchBox';
+import SearchBoxContainer from '../containers/SearchBoxContainer';
+import { WHITE } from '../lib/colors';
 
 export default StackNavigator({
   SearchScreen: {
@@ -13,7 +13,7 @@ export default StackNavigator({
       title: 'Search Products',
       header: (
         <View style={{ paddingTop: 25, backgroundColor: WHITE }}>
-          <SearchBox />
+          <SearchBoxContainer />
         </View>
       )
     })
