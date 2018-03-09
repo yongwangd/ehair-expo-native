@@ -1,7 +1,7 @@
 const firebase = require('firebase');
 
 // Initialize Firebase
-let config = {
+const config = {
   apiKey: 'AIzaSyBnX1Yt1Drfb51N7GTELUaOQcTM3yiVA3Q',
   authDomain: 'ehair-expo-dev.firebaseapp.com',
   databaseURL: 'https://ehair-expo-dev.firebaseio.com',
