@@ -4,7 +4,7 @@ import { initialContactState } from './initialState';
 
 const initState = {
   contacts: initialContactState,
-  searchText: 'he'
+  searchText: 'th'
 };
 
 export const CONTACTS_FETCHED = 'CONTACTS_FETCHED';

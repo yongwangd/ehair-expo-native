@@ -1,19 +1,18 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabBarBottom, TabNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
-
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import TagTabNav from '../tagsTab/TagTabNav';
+import HomeTabNav from '../homeTab/HomeTabNav';
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
+import React from 'react';
 import SearchTabNav from '../searchTab/SearchTabNav';
+import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
   {
     Links: {
-      screen: TagTabNav,
+      screen: HomeTabNav,
       navigationOptions: {
         header: null
       }

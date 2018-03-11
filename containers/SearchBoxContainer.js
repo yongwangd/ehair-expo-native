@@ -1,5 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import { GRAY } from '../lib/colors';
 import R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -19,7 +20,15 @@ export class SearchBox extends React.Component {
     } = this.props;
     const { focused } = this.state;
     return (
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          padding: 3,
+          border: 1,
+          borderColor: GRAY
+        }}
+      >
         <TextInput
           value={value}
           ref={ref => (this.inputRef = ref)}

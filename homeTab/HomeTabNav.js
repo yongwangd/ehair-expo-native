@@ -1,12 +1,12 @@
-import { StackNavigator } from 'react-navigation';
-import TagLandingScreen from './TagLandingScreen';
-import TagListScreen from './TagListScreen';
-import TagContactsScreen from './TagContactsScreen';
 import ContactDetailScreen from '../searchTab/ContactDetailScreen';
+import HomeLandingScreen from './HomeLandingScreen';
+import { StackNavigator } from 'react-navigation';
+import TagContactsScreen from './TagContactsScreen';
+import TagListScreen from './TagListScreen';
 
 export default StackNavigator({
-  TagLandingScreen: {
-    screen: TagLandingScreen,
+  HomeLandingScreen: {
+    screen: HomeLandingScreen,
     navigationOptions: {
       title: 'EHair Inventory'
     }

@@ -1,5 +1,12 @@
 import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import { GRAY, GREEN } from '../lib/colors';
 
 import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
@@ -62,7 +69,7 @@ const ContactItem = props => {
             {comment}
           </Text>
           <WhiteSpace size="lg" />
-          <TouchableOpacity
+          <TouchableHighlight
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -92,7 +99,7 @@ const ContactItem = props => {
                 {inStock ? 'In Stock' : 'Sold Out'}
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </Flex.Item>
       </Flex>
       <WhiteSpace />

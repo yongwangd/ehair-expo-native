@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class TagLandingScreen extends React.Component {
+class HomeLandingScreen extends React.Component {
   onTagItemClick = tag => {
     const { navigation } = this.props;
     console.log('tag clicked', tag);
@@ -53,4 +53,4 @@ class TagLandingScreen extends React.Component {
 
 export default connect(state => ({
   rootTags: state.tagChunk.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg))
-}))(TagLandingScreen);
+}))(HomeLandingScreen);

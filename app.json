@@ -10,7 +10,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/ehair-logo.png",
+      "image": "./assets/images/ehair-logo-splash.png",
       "resizeMode": "center",
       "backgroundColor": "#ffffff"
     },
