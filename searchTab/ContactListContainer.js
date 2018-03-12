@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { GRAY, GREEN } from '../lib/colors';
+import { GRAY, GREEN, LIGHTBLACK, NAVY } from '../lib/colors';
 
 import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { connect } from 'react-redux';
+import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
 const styles = {
   contactItem: {}
@@ -118,7 +119,9 @@ class ContactItemList extends React.Component {
     const visibleContacts = contacts.slice(0, visible);
     return (
       <View style={{ flex: 1 }}>
-        <Text>{contacts.length} Products</Text>
+        <Text style={{ fontFamily: 'open-sans', fontColor: NAVY, padding: 6 }}>
+          {contacts.length} Products
+        </Text>
         <FlatList
           {...rest}
           data={visibleContacts}

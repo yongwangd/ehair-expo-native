@@ -22,13 +22,13 @@ export default StackNavigator({
       headerTitle: (
         <TopSearchBar
           placeholder="Search Products"
-          LeftCmp={
-            <Image
-              source={require('../assets/images/ehair-logo.png')}
-              style={{ width: 60, height: 30 }}
-              resizeMode="contain"
-            />
-          }
+          //   LeftCmp={
+          //     <Image
+          //       source={require('../assets/images/ehair-logo.png')}
+          //       style={{ width: 60, height: 30 }}
+          //       resizeMode="contain"
+          //     />
+          //   }
           afterSubmit={text =>
             navigation.navigate('SearchResultScreen', { searchText: text })
           }
