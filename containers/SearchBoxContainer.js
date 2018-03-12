@@ -54,7 +54,7 @@ export class SearchBox extends React.Component {
           focused && (
             <Ionicons
               onPress={onClearText}
-              name="ios-flame"
+              name="md-close-circle"
               size={20}
               style={{ color: GRAY, marginRight: 15 }}
             />
