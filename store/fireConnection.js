@@ -1,3 +1,6 @@
+import { emitEvent } from 'rx-event';
+import { USER_LOGIN } from './contants';
+
 const firebase = require('firebase');
 
 // Initialize Firebase
@@ -11,6 +14,22 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged', user);
+    emitEvent(USER_LOGIN, { uid: user.uid });
+  } else {
+    console.log('user logged out');
+  }
+});
+
+firebase
+  .auth()
+  .signInAnonymously()
+  .catch(err => {
+    console.info(err);
+  });
 
 export const signinWithFirebase = (username, password) =>
   firebase.auth().signInWithEmailAndPassword(username, password);

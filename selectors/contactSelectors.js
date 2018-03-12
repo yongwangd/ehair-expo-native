@@ -1,8 +1,17 @@
 import { createSelector } from 'reselect';
 import { propContains } from '../lib/littleFn';
 
-const contactsSelector = state => state.contactChunk.contacts;
 const searchTextSelector = state => state.contactChunk.searchText;
+export const contactsSelector = ({ contactChunk }) => {
+  const { savedContactKeys, contacts } = contactChunk;
+  console.log('savedkeys', savedContactKeys);
+  const mapped = contacts.map(ct => ({
+    ...ct,
+    saved: savedContactKeys[ct.ehairKey]
+  }));
+  console.log('mapped contact', mapped);
+  return mapped;
+};
 
 export const searchFilteredContactsSelector = createSelector(
   contactsSelector,

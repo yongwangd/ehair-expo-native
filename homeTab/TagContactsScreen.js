@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ContactListContainer from '../searchTab/ContactListContainer';
+import { contactsSelector } from '../selectors/contactSelectors';
 
 class TagContactsScreen extends React.Component {
   onContactClick = contact => {
@@ -24,7 +25,7 @@ class TagContactsScreen extends React.Component {
 
 const mapProps = (state, ownProps) => {
   const { tag } = ownProps.navigation.state.params;
-  const visibleContacts = state.contactChunk.contacts.filter(
+  const visibleContacts = contactsSelector(state).filter(
     ct => (ct.tagKeySet || {})[tag.key]
   );
 

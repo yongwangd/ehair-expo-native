@@ -8,7 +8,12 @@ import contactsActionReducer, {
 import { contactsList } from './contactsQuery';
 import { contactTagList } from './tagsQuery';
 import tagsReducer, { fetchTags } from './tagsActionReducer';
-import appInfoReducer, { setConnectionInfo } from './appInfoActionReducer';
+import appInfoReducer, {
+  setConnectionInfo,
+  setUserInfo
+} from './appInfoActionReducer';
+import { eventPayloadOfType$ } from 'rx-event';
+import { USER_LOGIN } from './contants';
 
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
@@ -34,6 +39,10 @@ contactsList().subscribe(contacts => {
 
 contactTagList().subscribe(tags => {
   store.dispatch(fetchTags(tags));
+});
+
+eventPayloadOfType$(USER_LOGIN).subscribe(userInfo => {
+  store.dispatch(setUserInfo(userInfo));
 });
 
 NetInfo.addEventListener('connectionChange', connectionInfo => {

@@ -1,14 +1,18 @@
-import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { WhiteSpace, Carousel, Badge, Tag, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { Carousel, Badge, Tag } from 'antd-mobile';
-import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { View, Text, Image, ScrollView } from 'react-native';
+import React from 'react';
+
 import { CONTACT_DETAIL_IMAGE_HEIGHT } from '../lib/screenProps';
+import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
+import { saveContact, unsaveContact } from '../store/contactsActionReducer';
+import { contactsSelector } from '../selectors/contactSelectors';
 
 const ContactDetail = props => {
-  const { contact } = props;
+  console.log('detail props', props);
+  const { contact, saveContact, unsaveContact } = props;
   const {
     name,
     images,
@@ -17,7 +21,9 @@ const ContactDetail = props => {
     subtitle,
     inStock,
     length,
-    downloadURL
+    saved = false,
+    downloadURL,
+    ehairKey
   } = contact;
 
   console.log(contact);
@@ -167,6 +173,16 @@ const ContactDetail = props => {
                   </Text>
                 </View>
               ))}
+              <WhiteSpace />
+              {saved ? (
+                <Button onClick={() => unsaveContact(ehairKey)}>
+                  <Text>Item Saved, Remove from Save List</Text>
+                </Button>
+              ) : (
+                <Button type="primary" onClick={() => saveContact(ehairKey)}>
+                  <Text>Save for Later</Text>
+                </Button>
+              )}
             </View>
           )}
       </ScrollView>
@@ -176,8 +192,7 @@ const ContactDetail = props => {
 
 class ContactDetailScreen extends React.Component {
   render() {
-    const { contact } = this.props;
-    return <ContactDetail contact={contact} />;
+    return <ContactDetail {...this.props} />;
   }
 }
 
@@ -185,9 +200,14 @@ const mapProps = (state, ownProps) => {
   const { navigation } = ownProps;
   const { contactId } = navigation.state.params;
 
-  const contact = state.contactChunk.contacts.find(c => c._id == contactId);
+  const contact = contactsSelector(state).find(c => c._id == contactId);
   console.log('contact found', contact, ownProps);
   return { contact };
 };
 
-export default connect(mapProps)(ContactDetailScreen);
+const mapDispatch = dispatch => ({
+  saveContact: contactId => dispatch(saveContact(contactId)),
+  unsaveContact: contactId => dispatch(unsaveContact(contactId))
+});
+
+export default connect(mapProps, mapDispatch)(ContactDetailScreen);

@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { connect } from 'react-redux';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import { searchFilteredContactsSelector } from '../selectors/contactSelectors';
 
 const styles = {
   contactItem: {}
@@ -158,7 +159,7 @@ class ContactListContainer extends React.Component {
 }
 
 const mapProps = (state, ownProps) => ({
-  contacts: ownProps.contacts || state.contactChunk.contacts
+  contacts: ownProps.contacts || searchFilteredContactsSelector(state)
 });
 
 export default connect(mapProps)(ContactListContainer);
