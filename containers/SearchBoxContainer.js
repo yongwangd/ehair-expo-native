@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import R from 'ramda';
 import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
-import { GRAY } from '../lib/colors';
+import { GRAY, BLUE } from '../lib/colors';
 import { updateContactSearch } from '../store/contactsActionReducer';
 
 export class SearchBox extends React.Component {
@@ -25,12 +26,16 @@ export class SearchBox extends React.Component {
           display: 'flex',
           flexDirection: 'row',
           flex: 1,
-          padding: 3,
-          borderWidth: 1,
-          borderColor: GRAY
+          borderColor: GRAY,
+          justifyContent: 'center',
+          padding: 8
         }}
       >
-        <Text>Hello</Text>
+        <Ionicons
+          name="ios-search"
+          size={20}
+          style={{ color: GRAY, marginRight: 8, marginLeft: 3 }}
+        />
         <TextInput
           value={value}
           ref={ref => (this.inputRef = ref)}
@@ -40,6 +45,7 @@ export class SearchBox extends React.Component {
           onBlur={() => this.setState({ focused: false })}
           onChangeText={e => onChangeText(e)}
           onSubmitEditing={() => onSubmitEditting()}
+          underlineColorAndroid="transparent"
           blurOnSubmit
         />
         {focused && (
@@ -50,7 +56,14 @@ export class SearchBox extends React.Component {
               this.inputRef.blur();
             }}
           >
-            <Text>Cancel</Text>
+            <Text
+              style={{
+                fontFamily: 'open-sans',
+                color: BLUE
+              }}
+            >
+              Cancel
+            </Text>
           </TouchableOpacity>
         )}
       </View>

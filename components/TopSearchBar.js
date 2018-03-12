@@ -5,7 +5,7 @@ import { WHITE } from '../lib/colors';
 import SearchBoxContainer from '../containers/SearchBoxContainer';
 
 const TopSearchBar = props => {
-  const { afterSubmit, LeftCmp, RightCmp } = props;
+  const { afterSubmit, LeftCmp, RightCmp, ...rest } = props;
   console.log(props);
 
   return (
@@ -13,10 +13,14 @@ const TopSearchBar = props => {
       style={{
         display: 'flex',
         backgroundColor: WHITE,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
-      <SearchBoxContainer afterSubmit={afterSubmit} />
+      {LeftCmp}
+      <SearchBoxContainer {...rest} afterSubmit={afterSubmit} />
+      {RightCmp}
     </View>
   );
 };

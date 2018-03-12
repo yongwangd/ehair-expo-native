@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import React from 'react';
 
 import { WHITE } from '../lib/colors';
@@ -10,15 +10,6 @@ import TagContactsScreen from './TagContactsScreen';
 import TagListScreen from './TagListScreen';
 import TopSearchBar from '../components/TopSearchBar';
 
-const searchResultHeader = navigation => (
-  <TopSearchBar
-    LeftCmp={<Text>Back</Text>}
-    afterSubmit={text =>
-      navigation.navigate('SearchResultScreen', { searchText: text })
-    }
-  />
-);
-
 export default StackNavigator({
   HomeLandingScreen: {
     screen: HomeLandingScreen,
@@ -27,6 +18,14 @@ export default StackNavigator({
       headerBackTitle: null,
       headerTitle: (
         <TopSearchBar
+          placeholder="Search Products"
+          LeftCmp={
+            <Image
+              source={require('../assets/images/ehair-logo.png')}
+              style={{ width: 60, height: 30 }}
+              resizeMode="contain"
+            />
+          }
           afterSubmit={text =>
             navigation.navigate('SearchResultScreen', { searchText: text })
           }
