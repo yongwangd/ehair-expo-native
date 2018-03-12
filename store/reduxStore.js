@@ -1,15 +1,19 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { NetInfo } from 'react-native';
 import logger from 'redux-logger';
+
 import contactsActionReducer, {
   contactsFetched
 } from './contactsActionReducer';
 import { contactsList } from './contactsQuery';
 import { contactTagList } from './tagsQuery';
 import tagsReducer, { fetchTags } from './tagsActionReducer';
+import appInfoReducer, { setConnectionInfo } from './appInfoActionReducer';
 
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
-  tagChunk: tagsReducer
+  tagChunk: tagsReducer,
+  appInfoChunk: appInfoReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(logger));
@@ -30,6 +34,11 @@ contactsList().subscribe(contacts => {
 
 contactTagList().subscribe(tags => {
   store.dispatch(fetchTags(tags));
+});
+
+NetInfo.addEventListener('connectionChange', connectionInfo => {
+  console.log('connection info', connectionInfo);
+  store.dispatch(setConnectionInfo(connectionInfo));
 });
 
 export default store;

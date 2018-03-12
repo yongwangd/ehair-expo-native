@@ -25,7 +25,7 @@ export class SearchBox extends React.Component {
           display: 'flex',
           flexDirection: 'row',
           padding: 3,
-          border: 1,
+          borderWidth: 1,
           borderColor: GRAY
         }}
       >

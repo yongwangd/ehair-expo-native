@@ -27,10 +27,10 @@ const ContactDetail = props => {
     if (available) {
       return (
         <Tag
+          key={len.label}
           selected
           style={{
             padding: 6,
-            border: '1px solid green',
             borderColor: '#108ee9'
           }}
         >
@@ -93,9 +93,9 @@ const ContactDetail = props => {
         <Carousel infinite>
           {images.map(img => (
             <Image
+              key={img}
               resizeMode="contain"
               style={{ width: '100%', height: CONTACT_DETAIL_IMAGE_HEIGHT }}
-              resizeMethod="contain"
               source={{
                 uri:
                   `http:${img}` ||
@@ -151,6 +151,7 @@ const ContactDetail = props => {
               </Text>
               {spec.map(sp => (
                 <View
+                  key={sp}
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
