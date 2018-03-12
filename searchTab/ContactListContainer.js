@@ -40,6 +40,7 @@ const ContactItem = props => {
               width: CONTACT_LIST_IMAGE_HEIGHT,
               height: CONTACT_LIST_IMAGE_HEIGHT
             }}
+            defaultSource={require('../assets/images/image-placeholder.png')}
             source={{
               uri:
                 (images && `http:${images[0]}`) ||
@@ -119,7 +120,7 @@ class ContactItemList extends React.Component {
     const visibleContacts = contacts.slice(0, visible);
     return (
       <View style={{ flex: 1 }}>
-        <Text style={{ fontFamily: 'open-sans', fontColor: NAVY, padding: 6 }}>
+        <Text style={{ fontFamily: 'open-sans', color: NAVY, padding: 6 }}>
           {contacts.length} Products
         </Text>
         <FlatList
