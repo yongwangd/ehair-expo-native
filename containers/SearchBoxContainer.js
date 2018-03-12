@@ -1,9 +1,9 @@
+import { connect } from 'react-redux';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-
-import { GRAY } from '../lib/colors';
 import R from 'ramda';
 import React from 'react';
-import { connect } from 'react-redux';
+
+import { GRAY } from '../lib/colors';
 import { updateContactSearch } from '../store/contactsActionReducer';
 
 export class SearchBox extends React.Component {
@@ -103,8 +103,13 @@ class SearchBoxContainer extends React.Component {
 const mapProps = state => ({
   value: state.contactChunk.searchText
 });
-const mapDispatch = dispatch => ({
-  onSubmit: text => dispatch(updateContactSearch(text))
+const mapDispatch = (dispatch, ownProps) => ({
+  onSubmit: text => {
+    dispatch(updateContactSearch(text));
+    if (R.is(Function, ownProps.afterSubmit)) {
+      ownProps.afterSubmit(text);
+    }
+  }
 });
 
 export default connect(mapProps, mapDispatch)(SearchBoxContainer);
