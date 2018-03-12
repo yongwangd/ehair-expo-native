@@ -1,11 +1,11 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 import { TabBarBottom, TabNavigator } from 'react-navigation';
+import React from 'react';
 
 import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import HomeTabNav from '../homeTab/HomeTabNav';
-import { Ionicons } from '@expo/vector-icons';
-import { Platform } from 'react-native';
-import React from 'react';
 import SearchTabNav from '../searchTab/SearchTabNav';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -32,7 +32,7 @@ export default TabNavigator(
   },
 
   {
-    initialRouteName: 'Search',
+    initialRouteName: 'Links',
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;

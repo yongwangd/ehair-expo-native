@@ -24,11 +24,13 @@ export class SearchBox extends React.Component {
         style={{
           display: 'flex',
           flexDirection: 'row',
+          flex: 1,
           padding: 3,
           borderWidth: 1,
           borderColor: GRAY
         }}
       >
+        <Text>Hello</Text>
         <TextInput
           value={value}
           ref={ref => (this.inputRef = ref)}

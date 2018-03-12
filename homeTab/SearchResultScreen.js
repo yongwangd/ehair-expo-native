@@ -35,7 +35,6 @@ class SearchResultScreen extends React.Component {
 }
 
 const mapProps = state => ({
-  searchText: state.contactChunk.searchText,
   contacts: searchFilteredContactsSelector(state)
 });
 
