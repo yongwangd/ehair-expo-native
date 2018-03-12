@@ -17,7 +17,8 @@ export class SearchBox extends React.Component {
       placeholder = 'Search',
       onSubmitEditting = R.T,
       onChangeText = R.T,
-      onCancel = R.T
+      onCancel = R.T,
+      onClearText = R.T
     } = this.props;
     const { focused } = this.state;
     return (
@@ -47,7 +48,17 @@ export class SearchBox extends React.Component {
           onSubmitEditing={() => onSubmitEditting()}
           underlineColorAndroid="transparent"
           blurOnSubmit
+          selectTextOnFocus
         />
+        {value != '' &&
+          focused && (
+            <Ionicons
+              onPress={onClearText}
+              name="ios-flame"
+              size={20}
+              style={{ color: GRAY, marginRight: 15 }}
+            />
+          )}
         {focused && (
           <TouchableOpacity
             onPress={e => {
@@ -90,6 +101,9 @@ class SearchBoxContainer extends React.Component {
     console.log('on submit editt', valueEditting);
     onSubmit(valueEditting);
   };
+  onClearText = () => {
+    this.setState({ valueEditting: '' });
+  };
   onCancel = () => {
     this.setState({
       valueEditting: this.props.value
@@ -105,11 +119,11 @@ class SearchBoxContainer extends React.Component {
   render() {
     const { value, ...rest } = this.props;
     const { valueEditting } = this.state;
-    const { onChangeText, onSubmitEditting, onCancel } = this;
+    const { onChangeText, onSubmitEditting, onCancel, onClearText } = this;
     return (
       <SearchBox
         value={valueEditting}
-        {...{ onCancel, onSubmitEditting, onChangeText, ...rest }}
+        {...{ onCancel, onSubmitEditting, onChangeText, onClearText, ...rest }}
       />
     );
   }

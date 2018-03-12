@@ -2,7 +2,7 @@ import { StackNavigator } from 'react-navigation';
 import { View, Text, Image } from 'react-native';
 import React from 'react';
 
-import { WHITE } from '../lib/colors';
+import { WHITE, GRAY } from '../lib/colors';
 import ContactDetailScreen from '../searchTab/ContactDetailScreen';
 import HomeLandingScreen from './HomeLandingScreen';
 import SearchResultScreen from './SearchResultScreen';
@@ -16,6 +16,9 @@ export default StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'EHAIR',
       headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: WHITE
+      },
       headerTitle: (
         <TopSearchBar
           placeholder="Search Products"
