@@ -1,12 +1,10 @@
-import { Button, ImagePicker } from 'antd-mobile';
-import { FlatList, Image, ScrollView, StyleSheet, Text } from 'react-native';
-
+import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
+import { FlatList, Image, ScrollView, StyleSheet, Text } from 'react-native';
 import R from 'ramda';
 import React from 'react';
+
 import { TagListCmp } from './TagListScreen';
-import { connect } from 'react-redux';
-import { isEmpty } from 'ramda';
 
 console.disableYellowBox = true;
 
