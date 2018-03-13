@@ -5,6 +5,7 @@ import R from 'ramda';
 import React from 'react';
 
 import { TagListCmp } from './TagListScreen';
+import SocialMediaBox from './SocialMediaBox';
 
 console.disableYellowBox = true;
 
@@ -36,6 +37,7 @@ class HomeLandingScreen extends React.Component {
         {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
         <ExpoLinksView />
+        <SocialMediaBox />
         <TagListCmp
           onTagClick={this.onTagItemClick}
           tags={this.props.rootTags}
