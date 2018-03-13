@@ -185,16 +185,6 @@ const ContactDetail = props => {
                 </View>
               ))}
               <WhiteSpace />
-              {saved ? (
-                <Button onClick={() => unsaveContact(ehairKey)}>
-                  <Text>Item Saved, Remove from Save List</Text>
-                </Button>
-              ) : (
-                <Button type="primary" onClick={() => saveContact(ehairKey)}>
-                  <Text>Save for Later</Text>
-                </Button>
-              )}
-              <WhiteSpace />
               <SaveForLaterContainer
                 unsaveContact={() => unsaveContact(ehairKey)}
                 saveContact={() => saveContact(ehairKey)}
