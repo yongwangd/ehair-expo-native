@@ -1,25 +1,16 @@
-import {
-  ActionSheet,
-  WhiteSpace,
-  Carousel,
-  Badge,
-  Tag,
-  Button,
-  Toast
-} from 'antd-mobile';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { View, Text, Image, ScrollView } from 'react-native';
+import { WhiteSpace, Carousel, Badge, Tag, Button, Toast } from 'antd-mobile';
+import R from 'ramda';
 import React from 'react';
 
 import { CONTACT_DETAIL_IMAGE_HEIGHT } from '../lib/screenProps';
+import { contactsSelector } from '../selectors/contactSelectors';
 import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
 import { saveContact, unsaveContact } from '../store/contactsActionReducer';
-import { contactsSelector } from '../selectors/contactSelectors';
-import SaveForLaterContainer, {
-  SaveForLaterButton
-} from '../containers/SaveForLaterContainer';
+import SaveForLaterContainer from '../containers/SaveForLaterContainer';
 
 const ContactDetail = props => {
   console.log('detail props', props);
@@ -207,19 +198,23 @@ const mapProps = (state, ownProps) => {
   const { navigation } = ownProps;
   const { contactId } = navigation.state.params;
 
-  const contact = contactsSelector(state).find(c => c._id == contactId);
+  const { savedContactKeys, contacts } = state.contactChunk;
+  const temp = R.find(R.propEq('_id', contactId), contacts);
+  const contact = R.assoc('saved', savedContactKeys[temp.ehairKey], temp);
+
+  //   const contact = contactsSelector(state).find(c => c._id == contactId);
   console.log('contact found', contact, ownProps);
   return { contact };
 };
 
 const mapDispatch = dispatch => ({
   saveContact: contactId => {
-    Toast.loading('Processing...', 0.5);
     dispatch(saveContact(contactId));
+    Toast.success('Item Saved', 0.5);
   },
   unsaveContact: contactId => {
-    Toast.loading('Processing...', 0.5);
     dispatch(unsaveContact(contactId));
+    Toast.success('Item Removed', 0.5);
   }
 });
 

@@ -7,14 +7,14 @@ class SaveForLaterContainer extends React.Component {
   state = {
     optionConfig: [
       {
-        title: 'View Saved List',
+        title: 'View Watched Products',
         callback: () => {
           console.log('view list click');
           this.props.viewSavedList();
         }
       },
       {
-        title: 'Remove from Saved List',
+        title: 'Remove from Watch List',
         isDestructive: true,
         callback: () => {
           console.log('remove from list click');
@@ -36,7 +36,7 @@ class SaveForLaterContainer extends React.Component {
       return (
         <ActionSheetButton
           optionConfig={optionConfig}
-          buttonText="Saved to List"
+          buttonText="Saved to Watch List"
           type="default"
         />
       );
