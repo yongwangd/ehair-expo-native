@@ -1,4 +1,11 @@
-import { WhiteSpace, Carousel, Badge, Tag, Button } from 'antd-mobile';
+import {
+  ActionSheet,
+  WhiteSpace,
+  Carousel,
+  Badge,
+  Tag,
+  Button
+} from 'antd-mobile';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,6 +16,9 @@ import { CONTACT_DETAIL_IMAGE_HEIGHT } from '../lib/screenProps';
 import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
 import { saveContact, unsaveContact } from '../store/contactsActionReducer';
 import { contactsSelector } from '../selectors/contactSelectors';
+import SaveForLaterContainer, {
+  SaveForLaterButton
+} from '../containers/SaveForLaterContainer';
 
 const ContactDetail = props => {
   console.log('detail props', props);
@@ -183,6 +193,12 @@ const ContactDetail = props => {
                   <Text>Save for Later</Text>
                 </Button>
               )}
+              <WhiteSpace />
+              <SaveForLaterContainer
+                unsaveContact={() => unsaveContact(ehairKey)}
+                saveContact={() => saveContact(ehairKey)}
+                saved={saved}
+              />
             </View>
           )}
       </ScrollView>
