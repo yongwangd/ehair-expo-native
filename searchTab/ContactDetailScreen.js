@@ -4,7 +4,8 @@ import {
   Carousel,
   Badge,
   Tag,
-  Button
+  Button,
+  Toast
 } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
@@ -222,8 +223,14 @@ const mapProps = (state, ownProps) => {
 };
 
 const mapDispatch = dispatch => ({
-  saveContact: contactId => dispatch(saveContact(contactId)),
-  unsaveContact: contactId => dispatch(unsaveContact(contactId))
+  saveContact: contactId => {
+    Toast.loading('Processing...', 0.5);
+    dispatch(saveContact(contactId));
+  },
+  unsaveContact: contactId => {
+    Toast.loading('Processing...', 0.5);
+    dispatch(unsaveContact(contactId));
+  }
 });
 
 export default connect(mapProps, mapDispatch)(ContactDetailScreen);

@@ -36,9 +36,8 @@ class SaveForLaterContainer extends React.Component {
       return (
         <ActionSheetButton
           optionConfig={optionConfig}
-          message="Pick an Action"
-          buttonText="Save for Later"
-          type="primary"
+          buttonText="Saved to List"
+          type="default"
         />
       );
     }
