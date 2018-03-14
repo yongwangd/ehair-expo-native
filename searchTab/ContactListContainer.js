@@ -9,14 +9,14 @@ import {
   View
 } from 'react-native';
 import { GRAY, GREEN, LIGHTBLACK, NAVY } from '../lib/colors';
-
 import { CONTACT_LIST_IMAGE_HEIGHT } from '../lib/screenProps';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { connect } from 'react-redux';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import { searchFilteredContactsSelector } from '../selectors/contactSelectors';
-import Navigator from '../navigation/Navigator';
+import { withNavigation } from 'react-navigation';
+import R from 'ramda';
 
 const styles = {
   contactItem: {}
@@ -149,7 +149,6 @@ class ContactItemList extends React.Component {
 class ContactListContainer extends React.Component {
   render() {
     const { contacts, onContactClick, ...rest } = this.props;
-
     return (
       <ContactItemList
         contacts={contacts}
@@ -160,16 +159,21 @@ class ContactListContainer extends React.Component {
   }
 }
 
-const mapProps = (state, ownProps) => ({
-  contacts: ownProps.contacts || searchFilteredContactsSelector(state),
-  onContactClick:
-    ownProps.onContactClick ||
-    (contact =>
-      Navigator.navigate('ContactDetailScreen', {
-        contactId: contact._id,
-        title: contact.name
-      }))
-});
+const mapProps = (state, ownProps) => {
+  console.log(ownProps, 'ownprops');
+  return {
+    contacts: ownProps.contacts || searchFilteredContactsSelector(state),
+    onContactClick:
+      ownProps.onContactClick ||
+      (contact =>
+        ownProps.navigation.navigate('ContactDetailScreen', {
+          contactId: contact._id,
+          title: contact.name
+        }))
+  };
+};
 
+export default R.compose(withNavigation, connect(mapProps))(
+  ContactListContainer
+);
 
-export default connect(mapProps)(ContactListContainer);

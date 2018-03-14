@@ -1,8 +1,9 @@
-import { View, ActionSheet, Button, Text } from 'antd-mobile';
-import React from 'react';
 import { connect } from 'react-redux';
+import { View, ActionSheet, Button, Text } from 'antd-mobile';
+import { withNavigation } from 'react-navigation';
+import React from 'react';
+
 import { ActionSheetButton } from '../components/ActionSheetButton';
-import Navigator from '../navigation/Navigator';
 
 class SaveForLaterContainer extends React.Component {
   state = {
@@ -11,7 +12,7 @@ class SaveForLaterContainer extends React.Component {
         title: 'View Watched Products',
         callback: () => {
           console.log('view list click');
-          Navigator.navigate('WatchListScreen');
+          this.props.navigation.navigate('WatchListScreen');
         }
       },
       {
@@ -53,4 +54,4 @@ class SaveForLaterContainer extends React.Component {
   }
 }
 
-export default SaveForLaterContainer;
+export default withNavigation(SaveForLaterContainer);
