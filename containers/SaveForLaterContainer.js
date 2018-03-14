@@ -2,7 +2,7 @@ import { View, ActionSheet, Button, Text } from 'antd-mobile';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionSheetButton } from '../components/ActionSheetButton';
-import Navigator from '../navigation/navigator';
+import Navigator from '../navigation/Navigator';
 
 class SaveForLaterContainer extends React.Component {
   state = {

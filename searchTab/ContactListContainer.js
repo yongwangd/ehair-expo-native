@@ -16,7 +16,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import { searchFilteredContactsSelector } from '../selectors/contactSelectors';
-import Navigator from '../navigation/navigator';
+import Navigator from '../navigation/Navigator';
 
 const styles = {
   contactItem: {}
@@ -170,5 +170,6 @@ const mapProps = (state, ownProps) => ({
         title: contact.name
       }))
 });
+
 
 export default connect(mapProps)(ContactListContainer);

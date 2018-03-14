@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-import Navigator from './navigator';
+import Navigator from './Navigator';
 
 const RootStackNavigator = StackNavigator(
   {

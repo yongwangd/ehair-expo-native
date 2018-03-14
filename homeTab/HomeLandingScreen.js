@@ -1,4 +1,4 @@
-import { WhiteSpace } from 'antd-mobile';
+import { WhiteSpace, List } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
 
@@ -9,13 +9,18 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native';
 import R from 'ramda';
 import React from 'react';
 
 import { TagListCmp } from './TagListScreen';
 import SocialMediaBox from './SocialMediaBox';
+import ContactListContainer from '../searchTab/ContactListContainer';
+import WatchListScreen from './WatchListScreen';
+import Navigator from '../navigation/Navigator';
+import { BLUE } from '../lib/colors';
 
 console.disableYellowBox = true;
 
@@ -36,6 +41,27 @@ class HomeLandingScreen extends React.Component {
   };
 
   render() {
+    const { savedProductsCount } = this.props;
+    const saveProductHeader = (
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: 15,
+          paddingBottom: 9,
+          backgroundColor: '#F5F5F9'
+        }}
+      >
+        <Text style={{ color: '#888' }}>Saved Products</Text>
+        {savedProductsCount > 0 && (
+          <TouchableOpacity
+            onPress={() => Navigator.navigate('WatchListScreen')}
+          >
+            <Text style={{ color: BLUE }}>View All</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    );
     console.log(this.props.navigation);
     console.log('tags, props', this.props);
     return (
@@ -62,6 +88,12 @@ class HomeLandingScreen extends React.Component {
         />
         <WhiteSpace size="lg" />
 
+        <List renderHeader={() => saveProductHeader}>
+          <List.Item>
+            <WatchListScreen />
+          </List.Item>
+        </List>
+
         <WhiteSpace size="lg" />
         <SocialMediaBox />
         <WhiteSpace />
@@ -71,5 +103,6 @@ class HomeLandingScreen extends React.Component {
 }
 
 export default connect(state => ({
-  rootTags: state.tagChunk.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg))
+  rootTags: state.tagChunk.tags.filter(tg => !tg.parentTagSet || R.isEmpty(tg)),
+  savedProductsCount: Object.keys(state.contactChunk.savedContactKeys).length
 }))(HomeLandingScreen);
