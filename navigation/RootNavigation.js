@@ -5,15 +5,19 @@ import { StackNavigator } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import Navigator from './Navigator';
+import HomeTabNav from '../homeTab/HomeTabNav';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: MainTabNavigator
+      // uncomment this line if we need Tab Navigator
+      //   screen: MainTabNavigator
+      screen: HomeTabNav
     }
   },
   {
     navigationOptions: () => ({
+      header: null,
       headerTitleStyle: {
         fontWeight: 'normal'
       }

@@ -65,39 +65,42 @@ class HomeLandingScreen extends React.Component {
     console.log(this.props.navigation);
     console.log('tags, props', this.props);
     return (
-      <ScrollView style={styles.container}>
-        <Image
-          source={require('../assets/images/ehair-logo.png')}
-          style={{ width: '100%', height: 70 }}
-          resizeMode="contain"
-        />
-        <View style={{ paddingTop: 30 }} />
-        {/* Go ahead and delete ExpoLinksView and replace it with your
+      <View style={{ flex: 1 }}>
+        <ScrollView style={styles.container}>
+          <Image
+            source={require('../assets/images/ehair-logo.png')}
+            style={{ width: '100%', height: 70 }}
+            resizeMode="contain"
+          />
+          <View style={{ paddingTop: 30 }} />
+          {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links *
         <ExpoLinksView />
         */}
-        <Button
-          onPress={() => this.props.navigation.navigate('WatchListScreen')}
-          title="Watch List"
-        >
-          <Text>Watch List</Text>
-        </Button>
-        <TagListCmp
-          onTagClick={this.onTagItemClick}
-          tags={this.props.rootTags}
-        />
-        <WhiteSpace size="lg" />
+          <Button
+            onPress={() => this.props.navigation.navigate('WatchListScreen')}
+            title="Watch List"
+          >
+            <Text>Watch List</Text>
+          </Button>
+          <TagListCmp
+            onTagClick={this.onTagItemClick}
+            tags={this.props.rootTags}
+          />
+          <WhiteSpace size="lg" />
 
-        <List renderHeader={() => saveProductHeader}>
-          <List.Item>
-            <WatchListScreen />
-          </List.Item>
-        </List>
+          <List renderHeader={() => saveProductHeader}>
+            <List.Item>
+              <WatchListScreen />
+            </List.Item>
+          </List>
 
-        <WhiteSpace size="lg" />
-        <SocialMediaBox />
-        <WhiteSpace />
-      </ScrollView>
+          <WhiteSpace size="lg" />
+          <SocialMediaBox />
+          <WhiteSpace size="lg" />
+          <WhiteSpace size="lg" />
+        </ScrollView>
+      </View>
     );
   }
 }
