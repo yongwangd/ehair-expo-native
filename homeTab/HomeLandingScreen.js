@@ -1,6 +1,16 @@
+import { WhiteSpace } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
-import { FlatList, Image, ScrollView, StyleSheet, Text } from 'react-native';
+
+import {
+  View,
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  Button
+} from 'react-native';
 import R from 'ramda';
 import React from 'react';
 
@@ -13,7 +23,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    fontFamily: 'open-sans'
   }
 });
 
@@ -34,18 +45,26 @@ class HomeLandingScreen extends React.Component {
           style={{ width: '100%', height: 70 }}
           resizeMode="contain"
         />
+        <View style={{ paddingTop: 30 }} />
         {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
+           * content, we just wanted to provide you with some helpful links *
         <ExpoLinksView />
-        <SocialMediaBox />
+        */}
+        <Button
+          onPress={() => this.props.navigation.navigate('WatchListScreen')}
+          title="Watch List"
+        >
+          <Text>Watch List</Text>
+        </Button>
         <TagListCmp
           onTagClick={this.onTagItemClick}
           tags={this.props.rootTags}
         />
-        <FlatList
-          data={this.props.contacts}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-        />
+        <WhiteSpace size="lg" />
+
+        <WhiteSpace size="lg" />
+        <SocialMediaBox />
+        <WhiteSpace />
       </ScrollView>
     );
   }

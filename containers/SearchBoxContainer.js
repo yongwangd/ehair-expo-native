@@ -4,7 +4,7 @@ import R from 'ramda';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
-import { GRAY, BLUE } from '../lib/colors';
+import { GRAY, BLUE, LIGHTGRAY } from '../lib/colors';
 import { updateContactSearch } from '../store/contactsActionReducer';
 
 export class SearchBox extends React.Component {
@@ -29,36 +29,51 @@ export class SearchBox extends React.Component {
           flex: 1,
           borderColor: GRAY,
           justifyContent: 'center',
-          padding: 8
+          padding: 8,
+          alignItems: 'center'
         }}
       >
-        <Ionicons
-          name="ios-search"
-          size={20}
-          style={{ color: GRAY, marginRight: 8, marginLeft: 3 }}
-        />
-        <TextInput
-          value={value}
-          ref={ref => (this.inputRef = ref)}
-          style={{ flex: 1 }}
-          placeholder={placeholder}
-          onFocus={() => this.setState({ focused: true })}
-          onBlur={() => this.setState({ focused: false })}
-          onChangeText={e => onChangeText(e)}
-          onSubmitEditing={() => onSubmitEditting()}
-          underlineColorAndroid="transparent"
-          blurOnSubmit
-          selectTextOnFocus
-        />
-        {value != '' &&
-          focused && (
-            <Ionicons
-              onPress={onClearText}
-              name="md-close-circle"
-              size={20}
-              style={{ color: GRAY, marginRight: 15 }}
-            />
-          )}
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            backgroundColor: LIGHTGRAY,
+            padding: 4,
+            borderRadius: 8
+          }}
+        >
+          <Ionicons
+            name="ios-search"
+            size={20}
+            style={{
+              color: GRAY,
+              marginRight: 11,
+              marginLeft: 8
+            }}
+          />
+          <TextInput
+            value={value}
+            ref={ref => (this.inputRef = ref)}
+            style={{ flex: 1 }}
+            placeholder={placeholder}
+            onFocus={() => this.setState({ focused: true })}
+            onBlur={() => this.setState({ focused: false })}
+            onChangeText={e => onChangeText(e)}
+            onSubmitEditing={() => onSubmitEditting()}
+            underlineColorAndroid="transparent"
+            blurOnSubmit
+            selectTextOnFocus
+          />
+          {value != '' &&
+            focused && (
+              <Ionicons
+                onPress={onClearText}
+                name="md-close-circle"
+                size={20}
+                style={{ color: GRAY, marginRight: 5 }}
+              />
+            )}
+        </View>
         {focused && (
           <TouchableOpacity
             onPress={e => {
@@ -70,7 +85,8 @@ export class SearchBox extends React.Component {
             <Text
               style={{
                 fontFamily: 'open-sans',
-                color: BLUE
+                color: BLUE,
+                marginLeft: 10
               }}
             >
               Cancel

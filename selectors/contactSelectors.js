@@ -1,3 +1,4 @@
+import R from 'ramda';
 import { createSelector } from 'reselect';
 import { propContains } from '../lib/littleFn';
 
@@ -11,6 +12,14 @@ export const contactsSelector = ({ contactChunk }) => {
   }));
   console.log('mapped contact', mapped);
   return mapped;
+};
+
+export const watchListSelector = ({ contactChunk }) => {
+  const { savedContactKeys, contacts } = contactChunk;
+
+  return Object.keys(savedContactKeys)
+    .map(key => contacts.find(R.propEq('ehairKey', key)))
+    .map(R.assoc('saved', true));
 };
 
 export const searchFilteredContactsSelector = createSelector(

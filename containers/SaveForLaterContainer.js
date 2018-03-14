@@ -2,6 +2,7 @@ import { View, ActionSheet, Button, Text } from 'antd-mobile';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionSheetButton } from '../components/ActionSheetButton';
+import Navigator from '../navigation/navigator';
 
 class SaveForLaterContainer extends React.Component {
   state = {
@@ -10,7 +11,7 @@ class SaveForLaterContainer extends React.Component {
         title: 'View Watched Products',
         callback: () => {
           console.log('view list click');
-          this.props.viewSavedList();
+          Navigator.navigate('WatchListScreen');
         }
       },
       {

@@ -9,6 +9,7 @@ import SearchResultScreen from './SearchResultScreen';
 import TagContactsScreen from './TagContactsScreen';
 import TagListScreen from './TagListScreen';
 import TopSearchBar from '../components/TopSearchBar';
+import WatchListScreen from './WatchListScreen';
 
 export default StackNavigator({
   HomeLandingScreen: {
@@ -20,21 +21,30 @@ export default StackNavigator({
         backgroundColor: WHITE
       },
       headerTitle: (
-        <TopSearchBar
-          placeholder="Search Products"
-          //   LeftCmp={
-          //     <Image
-          //       source={require('../assets/images/ehair-logo.png')}
-          //       style={{ width: 60, height: 30 }}
-          //       resizeMode="contain"
-          //     />
-          //   }
-          afterSubmit={text =>
-            navigation.navigate('SearchResultScreen', { searchText: text })
-          }
-        />
+        <View style={{ flex: 1, marginLeft: 7, marginRight: 7 }}>
+          <TopSearchBar
+            placeholder="Search Products"
+            //   LeftCmp={
+            //     <Image
+            //       source={require('../assets/images/ehair-logo.png')}
+            //       style={{ width: 60, height: 30 }}
+            //       resizeMode="contain"
+            //     />
+            //   }
+            afterSubmit={text =>
+              text &&
+              text.trim() &&
+              navigation.navigate('SearchResultScreen', {
+                searchText: text.trim()
+              })
+            }
+          />
+        </View>
       )
     })
+  },
+  WatchListScreen: {
+    screen: WatchListScreen
   },
   SearchResultScreen: {
     screen: SearchResultScreen,

@@ -9,9 +9,24 @@ import HomeTabNav from '../homeTab/HomeTabNav';
 import SearchTabNav from '../searchTab/SearchTabNav';
 import SettingsScreen from '../screens/SettingsScreen';
 
+const tabIconConfig = {
+  'Home-ios-focused': 'ios-home',
+  'Home-ios': 'ios-home-outline',
+  'Home-android': 'md-home',
+
+  'Profile-ios-focused': 'ios-person',
+  'Profile-ios': 'ios-person-outline',
+  'Profile-android': 'md-person'
+};
+
+const getIconName = (tabName, platform, focused) => {
+  const key = `${tabName}-${platform}${focused ? '-focused' : ''}`;
+  return tabIconConfig[key];
+};
+
 export default TabNavigator(
   {
-    Links: {
+    Home: {
       screen: HomeTabNav,
       navigationOptions: {
         header: null
@@ -23,7 +38,7 @@ export default TabNavigator(
         header: null
       }
     },
-    Home: {
+    Expo: {
       screen: HomeScreen
     },
     Settings: {
@@ -32,7 +47,7 @@ export default TabNavigator(
   },
 
   {
-    initialRouteName: 'Links',
+    initialRouteName: 'Home',
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
@@ -62,6 +77,8 @@ export default TabNavigator(
                 ? `ios-options${focused ? '' : '-outline'}`
                 : 'md-options';
         }
+
+        iconName = getIconName(routeName, Platform.OS, focused);
         return (
           <Ionicons
             name={iconName}

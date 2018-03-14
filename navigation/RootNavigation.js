@@ -4,19 +4,20 @@ import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import Navigator from './navigator';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: MainTabNavigator,
-    },
+      screen: MainTabNavigator
+    }
   },
   {
     navigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-    }),
+        fontWeight: 'normal'
+      }
+    })
   }
 );
 
@@ -30,7 +31,9 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+    return (
+      <RootStackNavigator ref={navRef => Navigator.setNavigator(navRef)} />
+    );
   }
 
   _registerForPushNotifications() {
@@ -41,10 +44,14 @@ export default class RootNavigator extends React.Component {
     registerForPushNotificationsAsync();
 
     // Watch for incoming notifications
-    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification
+    );
   }
 
   _handleNotification = ({ origin, data }) => {
-    console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
+    console.log(
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+    );
   };
 }

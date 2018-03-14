@@ -1,4 +1,5 @@
 import { Card, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
+
 import {
   FlatList,
   Image,
@@ -15,6 +16,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import { searchFilteredContactsSelector } from '../selectors/contactSelectors';
+import Navigator from '../navigation/navigator';
 
 const styles = {
   contactItem: {}
@@ -159,7 +161,14 @@ class ContactListContainer extends React.Component {
 }
 
 const mapProps = (state, ownProps) => ({
-  contacts: ownProps.contacts || searchFilteredContactsSelector(state)
+  contacts: ownProps.contacts || searchFilteredContactsSelector(state),
+  onContactClick:
+    ownProps.onContactClick ||
+    (contact =>
+      Navigator.navigate('ContactDetailScreen', {
+        contactId: contact._id,
+        title: contact.name
+      }))
 });
 
 export default connect(mapProps)(ContactListContainer);
