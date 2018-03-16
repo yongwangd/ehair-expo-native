@@ -22,9 +22,10 @@ import SocialMediaBox from './SocialMediaBox';
 import ContactListContainer from '../searchTab/ContactListContainer';
 import WatchListScreen from './WatchListScreen';
 import Navigator from '../navigation/Navigator';
-import { BLUE } from '../lib/colors';
+import { BLUE, LINKBLUE } from '../lib/colors';
 import TitleContent from '../components/TitleContent';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { makeReducer } from '../lib/reduxUtil';
 
 console.disableYellowBox = true;
 
@@ -45,7 +46,13 @@ class HomeLandingScreen extends React.Component {
     navigation.navigate('TagListScreen', { parentTag: tag, title: tag.label });
   };
 
+  openMap = address => {
+    console.log('opening map');
+    Linking.openURL('http://maps.apple.com/maps?daddr=');
+  };
+
   render() {
+    const { openMap } = this;
     const { savedProductsCount } = this.props;
     return (
       <View style={{ flex: 1 }}>
@@ -119,7 +126,7 @@ class HomeLandingScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => Linking.openURL('tel:+17702850409')}
                 >
-                  <Text>(770) 285-0409</Text>
+                  <Text style={{ color: LINKBLUE }}>(770) 285-0409</Text>
                 </TouchableOpacity>
               </List.Item>
               <List.Item
@@ -131,13 +138,19 @@ class HomeLandingScreen extends React.Component {
                   />
                 }
               >
-                <Text style={{ paddingBottom: 8 }}>
-                  6185 A Jimmy Carter Blvd, Ste A, Norcross, GA 30071
-                </Text>
+                <TouchableOpacity onPress={openMap}>
+                  <Text style={{ paddingBottom: 8, color: LINKBLUE }}>
+                    6185 A Jimmy Carter Blvd, Ste A, Norcross, GA 30071
+                  </Text>
+                </TouchableOpacity>
               </List.Item>
               <MapView
                 style={{ flex: 1, height: 300 }}
                 initialRegion={{
+                  //   latitude: 33.926743,
+                  //   longitude: -84.217847,
+                  //   latitudeDelta: 0.0922,
+                  //   longitudeDelta: 0.0421
                   latitude: 37.78825,
                   longitude: -122.4324,
                   latitudeDelta: 0.0922,
@@ -146,21 +159,10 @@ class HomeLandingScreen extends React.Component {
               />
             </View>
           </TitleContent>
-
-          <List renderHeader={() => 'Contact US'}>
-            <List.Item>
-              <View />
-              <MapView
-                style={{ flex: 1, height: 300 }}
-                initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421
-                }}
-              />
-            </List.Item>
-          </List>
+          <WhiteSpace />
+          <WhiteSpace />
+          <WhiteSpace />
+          <WhiteSpace />
         </ScrollView>
       </View>
     );

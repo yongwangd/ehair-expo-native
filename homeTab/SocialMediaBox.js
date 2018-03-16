@@ -4,7 +4,7 @@ import { WebBrowser } from 'expo';
 import { List, WhiteSpace, ListView } from 'antd-mobile';
 import React from 'react';
 
-import { ORANGE, BLUE } from '../lib/colors';
+import { ORANGE, BLUE, LINKBLUE } from '../lib/colors';
 import TitleContent from '../components/TitleContent';
 
 const socialMediaConfig = {
@@ -44,7 +44,9 @@ const SocialMediaBox = props => (
   <TitleContent title="Resources">
     <View style={{ paddingVertical: 5, paddingHorizontal: 15 }}>
       <TouchableOpacity>
-        <Text style={{ fontSize: 16, fontFamily: 'open-sans', color: BLUE }}>
+        <Text
+          style={{ fontSize: 16, fontFamily: 'open-sans', color: LINKBLUE }}
+        >
           Ehair Office Website
         </Text>
       </TouchableOpacity>
