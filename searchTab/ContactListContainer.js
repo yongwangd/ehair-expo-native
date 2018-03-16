@@ -23,19 +23,28 @@ const styles = {
 };
 
 const ContactItem = props => {
-  const { contact, onContactClick, ...rest } = props;
+  const { contact, onContactClick, boxShadow = false, ...rest } = props;
   const { name, downloadURL, images, length, comment, inStock } = contact;
+
+  let flexStyle = {
+    backgroundColor: 'white',
+    marginLeft: 6,
+    marginRight: 16,
+    paddingRight: 6
+  };
+  if (boxShadow) {
+    flexStyle = {
+      ...flexStyle,
+      borderRadius: 10,
+      shadowRadius: 5,
+      shadowOpacity: 0.3,
+      shadowOffset: { height: 0, width: 0 }
+    };
+  }
 
   return (
     <TouchableOpacity onPress={() => onContactClick(contact)}>
-      <Flex
-        style={{
-          backgroundColor: 'white',
-          marginLeft: 6,
-          marginRight: 16,
-          paddingRight: 6
-        }}
-      >
+      <Flex style={flexStyle}>
         <View>
           <Image
             resizeMode="contain"
@@ -135,12 +144,14 @@ class ContactItemList extends React.Component {
           }}
           renderItem={ct => (
             <ContactItem
+              {...rest}
               key={ct._id}
               onContactClick={onContactClick}
               contact={ct.item}
             />
           )}
         />
+        
       </View>
     );
   }
@@ -151,9 +162,9 @@ class ContactListContainer extends React.Component {
     const { contacts, onContactClick, ...rest } = this.props;
     return (
       <ContactItemList
+        {...rest}
         contacts={contacts}
         onContactClick={onContactClick}
-        {...rest}
       />
     );
   }
@@ -176,4 +187,3 @@ const mapProps = (state, ownProps) => {
 export default R.compose(withNavigation, connect(mapProps))(
   ContactListContainer
 );
-

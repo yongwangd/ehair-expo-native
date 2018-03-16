@@ -4,11 +4,12 @@ import { List } from 'antd-mobile';
 import R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
+import TitleContent from '../components/TitleContent';
 
 export const TagListCmp = props => {
   const { tags, onTagClick } = props;
   return (
-    <List renderHeader={() => 'Categories'}>
+    <TitleContent title="Categories">
       {tags.map(tg => (
         <List.Item
           key={tg.key}
@@ -18,7 +19,7 @@ export const TagListCmp = props => {
           {tg.label}
         </List.Item>
       ))}
-    </List>
+    </TitleContent>
   );
 };
 

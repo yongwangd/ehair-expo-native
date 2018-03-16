@@ -48,12 +48,15 @@ export default StackNavigator(
       })
     },
     WatchListScreen: {
-      screen: WatchListScreen
+      screen: WatchListScreen,
+      navigationOptions: {
+        headerTitle: 'Saved Products'
+      }
     },
     SearchResultScreen: {
       screen: SearchResultScreen,
       navigationOptions: ({ navigation }) => ({
-        headerBackTitle: null,
+        headerBackTitle: 'Back',
         headerTitle: navigation.state.params.searchText
         //   headerTitle: (
         //     <TopSearchBar
@@ -68,11 +71,15 @@ export default StackNavigator(
       screen: TagListScreen,
       navigationOptions: ({ navigation }) => ({
         title: `${navigation.state.params.title || 'Tags Screen'}`,
-        headerBackTitle: 'Back'
+        headerBackTitle: null
       })
     },
     TagContactsScreen: {
-      screen: TagContactsScreen
+      screen: TagContactsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.tag.label || ''}`,
+        headerBackTitle: null
+      })
     },
     ContactDetailScreen: {
       screen: ContactDetailScreen

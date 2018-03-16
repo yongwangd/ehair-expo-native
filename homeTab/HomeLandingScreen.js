@@ -1,6 +1,8 @@
 import { WhiteSpace, List } from 'antd-mobile';
+import { Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
+import { Marker, MapView } from 'expo';
 
 import {
   View,
@@ -12,7 +14,7 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import R from 'ramda';
+import R, { view } from 'ramda';
 import React from 'react';
 
 import { TagListCmp } from './TagListScreen';
@@ -21,6 +23,8 @@ import ContactListContainer from '../searchTab/ContactListContainer';
 import WatchListScreen from './WatchListScreen';
 import Navigator from '../navigation/Navigator';
 import { BLUE } from '../lib/colors';
+import TitleContent from '../components/TitleContent';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 console.disableYellowBox = true;
 
@@ -28,7 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
+    backgroundColor: '#F5F5F9',
     fontFamily: 'open-sans'
   }
 });
@@ -42,28 +47,6 @@ class HomeLandingScreen extends React.Component {
 
   render() {
     const { savedProductsCount } = this.props;
-    const saveProductHeader = (
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          padding: 15,
-          paddingBottom: 9,
-          backgroundColor: '#F5F5F9'
-        }}
-      >
-        <Text style={{ color: '#888' }}>Saved Products</Text>
-        {savedProductsCount > 0 && (
-          <TouchableOpacity
-            onPress={() => Navigator.navigate('WatchListScreen')}
-          >
-            <Text style={{ color: BLUE }}>View All</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-    );
-    console.log(this.props.navigation);
-    console.log('tags, props', this.props);
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.container}>
@@ -76,29 +59,108 @@ class HomeLandingScreen extends React.Component {
           {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links *
         <ExpoLinksView />
-        */}
           <Button
             onPress={() => this.props.navigation.navigate('WatchListScreen')}
             title="Watch List"
           >
             <Text>Watch List</Text>
           </Button>
+        */}
           <TagListCmp
+            boxShadow={false}
             onTagClick={this.onTagItemClick}
             tags={this.props.rootTags}
           />
           <WhiteSpace size="lg" />
-
-          <List renderHeader={() => saveProductHeader}>
-            <List.Item>
-              <WatchListScreen />
-            </List.Item>
-          </List>
+          <TitleContent
+            title="Watch List"
+            extra={
+              savedProductsCount > 0 && (
+                <TouchableOpacity
+                  onPress={() => Navigator.navigate('WatchListScreen')}
+                >
+                  <Text style={{ color: BLUE }}>View All</Text>
+                </TouchableOpacity>
+              )
+            }
+          >
+            <WatchListScreen />
+          </TitleContent>
 
           <WhiteSpace size="lg" />
           <SocialMediaBox />
           <WhiteSpace size="lg" />
-          <WhiteSpace size="lg" />
+
+          <TitleContent title="Contact US" contentStyle={{ padding: 0 }}>
+            <View>
+              <View style={{ padding: 6 }} />
+              <List.Item
+                thumb={
+                  <Ionicons
+                    size={25}
+                    style={{ marginRight: 20 }}
+                    name="ios-time-outline"
+                  />
+                }
+              >
+                <Text>09:30 AM - 06:00 PM EST (Monday - Friday)</Text>
+                <Text>10:00 AM - 04:00 PM EST (Saturday) </Text>
+                <Text>Sunday Closed</Text>
+              </List.Item>
+              <List.Item
+                thumb={
+                  <Ionicons
+                    size={25}
+                    style={{ marginRight: 20 }}
+                    name="ios-call-outline"
+                  />
+                }
+              >
+                <TouchableOpacity
+                  onPress={() => Linking.openURL('tel:+17702850409')}
+                >
+                  <Text>(770) 285-0409</Text>
+                </TouchableOpacity>
+              </List.Item>
+              <List.Item
+                thumb={
+                  <Ionicons
+                    size={25}
+                    style={{ marginRight: 20 }}
+                    name="ios-pin-outline"
+                  />
+                }
+              >
+                <Text style={{ paddingBottom: 8 }}>
+                  6185 A Jimmy Carter Blvd, Ste A, Norcross, GA 30071
+                </Text>
+              </List.Item>
+              <MapView
+                style={{ flex: 1, height: 300 }}
+                initialRegion={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421
+                }}
+              />
+            </View>
+          </TitleContent>
+
+          <List renderHeader={() => 'Contact US'}>
+            <List.Item>
+              <View />
+              <MapView
+                style={{ flex: 1, height: 300 }}
+                initialRegion={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421
+                }}
+              />
+            </List.Item>
+          </List>
         </ScrollView>
       </View>
     );

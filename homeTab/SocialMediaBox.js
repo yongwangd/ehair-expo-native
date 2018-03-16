@@ -5,6 +5,7 @@ import { List, WhiteSpace, ListView } from 'antd-mobile';
 import React from 'react';
 
 import { ORANGE, BLUE } from '../lib/colors';
+import TitleContent from '../components/TitleContent';
 
 const socialMediaConfig = {
   facebook: {
@@ -40,36 +41,34 @@ const socialMediaConfig = {
 };
 
 const SocialMediaBox = props => (
-  <View style={{}}>
-    <List renderHeader={() => 'Resources'}>
-      <List.Item>
-        <TouchableOpacity>
-          <Text style={{ fontSize: 16, fontFamily: 'open-sans', color: BLUE }}>
-            Ehair Office Website
-          </Text>
-        </TouchableOpacity>
-        <View
-          style={{
-            marginTop: 15,
-            flexDirection: 'row',
-            justifyContent: 'space-between'
-          }}
-        >
-          {Object.values(socialMediaConfig).map(config => (
-            <TouchableOpacity
-              onPress={() => WebBrowser.openBrowserAsync(config.url)}
-            >
-              <Image
-                source={config.image}
-                style={{ width: 30, height: 30 }}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          ))}
-        </View>
-      </List.Item>
-    </List>
-  </View>
+  <TitleContent title="Resources">
+    <View style={{ paddingVertical: 5, paddingHorizontal: 15 }}>
+      <TouchableOpacity>
+        <Text style={{ fontSize: 16, fontFamily: 'open-sans', color: BLUE }}>
+          Ehair Office Website
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          marginTop: 15,
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}
+      >
+        {Object.values(socialMediaConfig).map(config => (
+          <TouchableOpacity
+            onPress={() => WebBrowser.openBrowserAsync(config.url)}
+          >
+            <Image
+              source={config.image}
+              style={{ width: 30, height: 30 }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  </TitleContent>
 );
 
 export default SocialMediaBox;
