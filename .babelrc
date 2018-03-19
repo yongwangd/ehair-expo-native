@@ -1,9 +1,8 @@
 {
   "presets": ["babel-preset-expo"],
-  "plugins": ["transform-remove-console"],
   "env": {
     "development": {
-      "plugins": ["transform-react-jsx-source"]
+      "plugins": ["transform-react-jsx-source", "transform-remove-console"]
     }
   }
 }

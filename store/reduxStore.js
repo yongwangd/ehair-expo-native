@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { AsyncStorage } from 'react-native';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { ReplaySubject } from 'rxjs';
 import logger from 'redux-logger';
 import R from 'ramda';
@@ -10,7 +10,7 @@ import contactsActionReducer, {
 import tagsReducer from './tagsActionReducer';
 import appInfoReducer from './appInfoActionReducer';
 import { setStore, getStore } from './localStorage';
-import { emitEvent, eventOfTypes$, eventPayloadOfType$ } from 'rx-event';
+import { emitEvent, eventOfTypes$ } from 'rx-event';
 
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
@@ -43,7 +43,6 @@ eventOfTypes$(LOCAL_STATE_FETCHED)
     console.log('time to sync persist', stateToPersist);
     setStore(stateToPersist);
   });
-
 
 getStore().then(persistedState => {
   console.log('persist state', persistedState);
