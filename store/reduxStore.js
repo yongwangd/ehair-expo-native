@@ -1,19 +1,16 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { NetInfo } from 'react-native';
+import { AsyncStorage } from 'react-native';
+import { ReplaySubject } from 'rxjs';
 import logger from 'redux-logger';
+import R from 'ramda';
 
 import contactsActionReducer, {
-  contactsFetched
+  setAllSavedContacts
 } from './contactsActionReducer';
-import { contactsList } from './contactsQuery';
-import { contactTagList } from './tagsQuery';
-import tagsReducer, { fetchTags } from './tagsActionReducer';
-import appInfoReducer, {
-  setConnectionInfo,
-  setUserInfo
-} from './appInfoActionReducer';
-import { eventPayloadOfType$ } from 'rx-event';
-import { USER_LOGIN } from './contants';
+import tagsReducer from './tagsActionReducer';
+import appInfoReducer from './appInfoActionReducer';
+import { setStore, getStore } from './localStorage';
+import { emitEvent, eventOfTypes$, eventPayloadOfType$ } from 'rx-event';
 
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
@@ -23,31 +20,40 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 
-store.subscribe(st => console.info('store', st));
+export const storeState$ = new ReplaySubject(1);
+store.subscribe(() => storeState$.next(store.getState()));
 
-contactsList().subscribe(contacts => {
-  console.log('contacts are', contacts);
+const dehydrate = state => {
+  const r = {
+    contactChunk: {
+      savedContactKeys: R.path(['contactChunk', 'savedContactKeys'], state)
+    }
+  };
 
-  // TODO: Randomize inStock
-  const visibleContacts = contacts.filter(c => !c.hide).map(c => ({
-    ...c,
-    inStock: Math.random() > 0.5
-  }));
+  console.log('dehydrated', r);
+  return r;
+};
 
-  store.dispatch(contactsFetched(visibleContacts));
-});
+const LOCAL_STATE_FETCHED = 'LOCAL_STATE_FETCHED';
 
-contactTagList().subscribe(tags => {
-  store.dispatch(fetchTags(tags));
-});
+eventOfTypes$(LOCAL_STATE_FETCHED)
+  .switchMapTo(storeState$.map(dehydrate))
+  .delay(200)
+  .subscribe(stateToPersist => {
+    console.log('time to sync persist', stateToPersist);
+    setStore(stateToPersist);
+  });
 
-eventPayloadOfType$(USER_LOGIN).subscribe(userInfo => {
-  store.dispatch(setUserInfo(userInfo));
-});
 
-NetInfo.addEventListener('connectionChange', connectionInfo => {
-  console.log('connection info', connectionInfo);
-  store.dispatch(setConnectionInfo(connectionInfo));
+getStore().then(persistedState => {
+  console.log('persist state', persistedState);
+  console.log('persist contact', persistedState.contactChunk.savedContactKeys);
+  if (persistedState) {
+    store.dispatch(
+      setAllSavedContacts(persistedState.contactChunk.savedContactKeys)
+    );
+  }
+  emitEvent(LOCAL_STATE_FETCHED, persistedState);
 });
 
 export default store;

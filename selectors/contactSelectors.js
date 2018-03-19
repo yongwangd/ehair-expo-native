@@ -18,6 +18,9 @@ export const watchListSelector = ({ contactChunk }) => {
   const { savedContactKeys, contacts } = contactChunk;
 
   return Object.keys(savedContactKeys)
+    .sort(
+      (a, b) => savedContactKeys[a].timestamp < savedContactKeys[b].timestamp
+    )
     .map(key => contacts.find(R.propEq('ehairKey', key)))
     .map(R.assoc('saved', true));
 };

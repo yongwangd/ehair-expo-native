@@ -128,6 +128,12 @@ class HomeLandingScreen extends React.Component {
                 >
                   <Text style={{ color: LINKBLUE }}>(770) 285-0409</Text>
                 </TouchableOpacity>
+                <WhiteSpace />
+                <TouchableOpacity
+                  onPress={() => Linking.openURL('tel:+17706625177')}
+                >
+                  <Text style={{ color: LINKBLUE }}>(770) 662-5177</Text>
+                </TouchableOpacity>
               </List.Item>
               <List.Item
                 thumb={

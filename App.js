@@ -5,6 +5,7 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import store from './store/reduxStore';
+import './store/postStoreCreation';
 
 // import './styles/main.scss';
 import './lib/screenProps';
