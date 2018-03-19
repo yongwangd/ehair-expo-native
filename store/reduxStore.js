@@ -12,13 +12,20 @@ import appInfoReducer from './appInfoActionReducer';
 import { setStore, getStore } from './localStorage';
 import { emitEvent, eventOfTypes$ } from 'rx-event';
 
+console.log('ENV', process.env.NODE_ENV);
+
+const middlewares = [];
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+
 const rootReducer = combineReducers({
   contactChunk: contactsActionReducer,
   tagChunk: tagsReducer,
   appInfoChunk: appInfoReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 export const storeState$ = new ReplaySubject(1);
 store.subscribe(() => storeState$.next(store.getState()));
