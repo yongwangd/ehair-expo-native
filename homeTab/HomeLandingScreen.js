@@ -3,6 +3,7 @@ import { Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { ExpoLinksView } from '@expo/samples';
 import { Marker, MapView } from 'expo';
+import Expo from 'expo';
 
 import {
   View,
@@ -26,6 +27,7 @@ import { BLUE, LINKBLUE } from '../lib/colors';
 import TitleContent from '../components/TitleContent';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { makeReducer } from '../lib/reduxUtil';
+import { getFirebase } from '../store/fireConnection';
 
 console.disableYellowBox = true;
 
@@ -51,12 +53,25 @@ class HomeLandingScreen extends React.Component {
     Linking.openURL('http://maps.apple.com/maps?daddr=');
   };
 
+  signInWithFB = () => {
+    Expo.Facebook.logInWithReadPermissionsAsync('155795775109304', {
+      permissions: ['public_profile']
+    }).then(res => {
+      console.log(res);
+    });
+  };
+
   render() {
     const { openMap } = this;
     const { savedProductsCount } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.container}>
+          <Button
+            onPress={this.signInWithFB}
+            title="signin with FB
+          "
+          />
           <Image
             source={require('../assets/images/ehair-logo.png')}
             style={{ width: '100%', height: 70 }}
@@ -150,7 +165,7 @@ class HomeLandingScreen extends React.Component {
                   </Text>
                 </TouchableOpacity>
               </List.Item>
-              <MapView
+              {/*   <MapView
                 style={{ flex: 1, height: 300 }}
                 initialRegion={{
                   //   latitude: 33.926743,
@@ -162,7 +177,7 @@ class HomeLandingScreen extends React.Component {
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
-              />
+            /> */}
             </View>
           </TitleContent>
           <WhiteSpace />

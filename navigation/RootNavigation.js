@@ -11,8 +11,8 @@ const RootStackNavigator = StackNavigator(
   {
     Main: {
       // uncomment this line if we need Tab Navigator
-      //   screen: MainTabNavigator
-      screen: HomeTabNav
+        screen: MainTabNavigator
+    //   screen: HomeTabNav
     }
   },
   {

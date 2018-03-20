@@ -82,7 +82,10 @@ export default StackNavigator(
       })
     },
     ContactDetailScreen: {
-      screen: ContactDetailScreen
+      screen: ContactDetailScreen,
+      navigationOptions: {
+        tabBarVisible: false
+      }
     }
   },
   {

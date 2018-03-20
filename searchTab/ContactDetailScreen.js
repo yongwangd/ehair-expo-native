@@ -8,9 +8,10 @@ import React from 'react';
 
 import { CONTACT_DETAIL_IMAGE_HEIGHT } from '../lib/screenProps';
 import { contactsSelector } from '../selectors/contactSelectors';
-import { GRAY, NAVY, LIGHTBLACK, GREEN } from '../lib/colors';
+import { GRAY, NAVY, LIGHTBLACK, GREEN, LIGHTGRAY } from '../lib/colors';
 import { saveContact, unsaveContact } from '../store/contactsActionReducer';
 import SaveForLaterContainer from '../containers/SaveForLaterContainer';
+import AddToCart from '../containers/ContactBottomActions';
 
 const ContactDetail = props => {
   console.log('detail props', props);
@@ -86,13 +87,12 @@ const ContactDetail = props => {
     <View
       style={{
         backgroundColor: 'white',
-        padding: 10,
-        flex: 1,
-        paddingBottom: 17,
-        paddingTop: 15
+        flex: 1
       }}
     >
-      <ScrollView>
+      <ScrollView
+        style={{ flex: 1, padding: 10, paddingTop: 15, paddingBottom: 20 }}
+      >
         <Text
           style={{ fontFamily: 'open-sans', fontSize: 20, marginBottom: 10 }}
         >
@@ -184,6 +184,14 @@ const ContactDetail = props => {
             </View>
           )}
       </ScrollView>
+      <View
+        style={{ padding: 4, borderTopColor: LIGHTGRAY, borderTopWidth: 1 }}
+      >
+        <AddToCart
+          length={length}
+          onSubmit={data => console.log('data get', data)}
+        />
+      </View>
     </View>
   );
 };
