@@ -13,6 +13,31 @@ import { saveContact, unsaveContact } from '../store/contactsActionReducer';
 import SaveForLaterContainer from '../containers/SaveForLaterContainer';
 import AddToCart from '../containers/ContactBottomActions';
 
+const renderLengthItem = (len, onClick) => {
+  const { label, available } = len;
+  if (available) {
+    return (
+      <Tag
+        key={len.label}
+        selected
+        style={{
+          padding: 6,
+          borderColor: '#108ee9'
+        }}
+      >
+        <Text style={{ color: '#108ee9' }}>{len.label}</Text>
+      </Tag>
+    );
+  }
+  return (
+    <Badge key={len.label} text="">
+      <Tag disabled style={{ padding: 6 }}>
+        <Text>{len.label}</Text>
+      </Tag>
+    </Badge>
+  );
+};
+
 const ContactDetail = props => {
   console.log('detail props', props);
   const { contact, saveContact, unsaveContact } = props;
@@ -30,31 +55,6 @@ const ContactDetail = props => {
   } = contact;
 
   console.log(contact);
-
-  const renderLengthItem = len => {
-    const { label, available } = len;
-    if (available) {
-      return (
-        <Tag
-          key={len.label}
-          selected
-          style={{
-            padding: 6,
-            borderColor: '#108ee9'
-          }}
-        >
-          <Text style={{ color: '#108ee9' }}>{len.label}</Text>
-        </Tag>
-      );
-    }
-    return (
-      <Badge key={len.label} text="">
-        <Tag disabled style={{ padding: 6 }}>
-          <Text>{len.label}</Text>
-        </Tag>
-      </Badge>
-    );
-  };
 
   const renderStockElm = () => (
     <View

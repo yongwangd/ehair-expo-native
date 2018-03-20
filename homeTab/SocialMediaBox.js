@@ -59,6 +59,7 @@ const SocialMediaBox = props => (
       >
         {Object.values(socialMediaConfig).map(config => (
           <TouchableOpacity
+            key={config.logo}
             onPress={() => WebBrowser.openBrowserAsync(config.url)}
           >
             <Image

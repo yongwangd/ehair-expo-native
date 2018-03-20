@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     // backgroundColor: '#fff',
-    backgroundColor: '#F5F5F9',
-    fontFamily: 'open-sans'
+    backgroundColor: '#F5F5F9'
   }
 });
 
